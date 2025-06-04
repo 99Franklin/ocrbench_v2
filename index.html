@@ -185,40 +185,115 @@
   
 </section>
 
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2.title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .content p {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      max-width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto 2rem auto;
+      font-size: 14px;
+      text-align: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    thead {
+      background-color: #e6f0fa;
+      color: #333;
+    }
+
+    thead tr td {
+      font-weight: bold;
+      padding: 0.6rem;
+      border-bottom: 2px solid #ccc;
+    }
+
+    tbody tr td {
+      padding: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9fcff;
+    }
+
+    tbody tr:hover {
+      background-color: #e0f3ff;
+      transition: background-color 0.2s ease;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        font-size: 12px;
+      }
+    }
+
+    .table-title {
+      font-weight: bold;
+      text-align: center;
+      margin: 2rem 0 1rem 0;
+    }
+  </style>
+</head>
+<body>
+
 <section class="section">
-  <div class="container is-max-desktop">
-    <!-- Leaderboard -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Leaderboard</h2>
-        <div class="content has-text-justified">
-          <!-- table1-->
-          <p>
-             Performance of LMMs on English tasks of public data
-          </p>
-          <div class="has-text-centered">        
-            <table
-              class="js-sort-table"
-              id="results_with_rank"
-              data-js-sort-table="true"
-              style="display: inline-table; font-size: 12px;"
-            >
-            <thead style="background-color: #f0f0f0;">
-              <tr>
-                <td class="js-sort-number" data-js-sort-colnum="0"><strong>Rank</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="1"><strong>Method</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="2"><strong>Recognition</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="3"><strong>Referring</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="4"><strong>Spotting</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="5"><strong>Extraction</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="6"><strong>Parsing</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="7"><strong>Calculation</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="8"><strong>Understanding</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="9"><strong>Reasoning</strong></td>
-                <td class="js-sort-number" data-js-sort-colnum="10"><strong>Average</strong></td>
-              </tr>
-            </thead>
-            <tbody>
+  <div class="container">
+    <h2 class="title">Leaderboard</h2>
+    <div class="content">
+
+      <p class="table-title">Performance of LMMs on English tasks of public data</p>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+            <td>Average</td>
+          </tr>
+        </thead>
+        <tbody>
               <tr>
                 <td>1</td>
                 <td>LLaVA-Next-8B</td>
@@ -459,22 +534,19 @@
           <!-- table1-->
 
           
-         <p>
-           Performance of LMMs on Chinese tasks of public data
-        </p>
-        <table class="js-sort-table" id="image_results" data-js-sort-table="true">
-        <!-- table2-->
-        <thead style="background-color: #f0f0f0;">
+         <p class="table-title">Performance of LMMs on Chinese tasks of public data</p>
+      <table>
+        <thead>
           <tr>
-            <td class="js-sort-number" data-js-sort-colnum="0"><strong>Rank</strong></td>
-            <td class="js-sort-text"   data-js-sort-colnum="1"><strong>Method</strong></td>
-            <td class="js-sort-text"   data-js-sort-colnum="2"><strong>LLM Size</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="3"><strong>Recognition</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="4"><strong>Extraction</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="5"><strong>Parsing</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="6"><strong>Understanding</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="7"><strong>Reasoning</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="8"><strong>Average</strong></td>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>LLM Size</td>
+            <td>Recognition</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+            <td>Average</td>
           </tr>
         </thead>
         <tbody>
@@ -680,26 +752,22 @@
           </tr>
         </tbody>
       </table>
-      <!-- table2-->
 
-         <p>
-           Performance of LMMs on English tasks of private data
-        </p>
-        <!-- table3-->
-        <table class="js-sort-table" id="image2_results" data-js-sort-table="true">
-        <thead style="background-color: #f0f0f0;">
+      <p class="table-title">Performance of LMMs on English tasks of private data</p>
+      <table>
+        <thead>
           <tr>
-            <td class="js-sort-number" data-js-sort-colnum="0"><strong>Rank</strong></td>
-            <td class="js-sort-text"   data-js-sort-colnum="1"><strong>Method</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="2"><strong>Recognition</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="3"><strong>Referring</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="4"><strong>Spotting</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="5"><strong>Extraction</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="6"><strong>Parsing</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="7"><strong>Calculation</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="8"><strong>Understanding</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="9"><strong>Reasoning</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="10"><strong>Average</strong></td>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+            <td>Average</td>
           </tr>
         </thead>
         <tbody>
@@ -939,24 +1007,20 @@
           </tr>
         </tbody>
       </table>
-      <!-- table2-->
 
-         <p>
-           Performance of LMMs on Chinese tasks of private data
-        </p>
-        <!-- table4-->
-        <table class="js-sort-table" id="image3_results" data-js-sort-table="true">
-        <thead style="background-color: #f0f0f0;">
+      <p class="table-title">Performance of LMMs on Chinese tasks of private data</p>
+      <table>
+        <thead>
           <tr>
-            <td class="js-sort-number" data-js-sort-colnum="0"><strong>Rank</strong></td>
-            <td class="js-sort-text"   data-js-sort-colnum="1"><strong>Method</strong></td>
-            <td class="js-sort-text"   data-js-sort-colnum="2"><strong>LLM Size</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="3"><strong>Recognition</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="4"><strong>Extraction</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="5"><strong>Parsing</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="6"><strong>Understanding</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="7"><strong>Reasoning</strong></td>
-            <td class="js-sort-number" data-js-sort-colnum="8"><strong>Average</strong></td>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>LLM Size</td>
+            <td>Recognition</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+            <td>Average</td>
           </tr>
         </thead>
         <tbody>
@@ -1158,17 +1222,10 @@
             <td>25.5</td>
             <td>53.4</td>
           </tr>
-        </tbody>
+       </tbody>
       </table>
-      <!-- table4-->
 
-        
-      </div>
     </div>
-  </div>
-  <!--/Leaderboard-->
-
-  
   </div>
 </section>
 
