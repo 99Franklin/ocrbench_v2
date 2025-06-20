@@ -199,20 +199,26 @@
     /* 高亮 Average 列 */
     .highlight-average {
       position: relative;
-      background-color: rgba(173, 216, 230, 0.25); /* 淡蓝色背景 */
+      background-color: rgba(255, 255, 255, 0.6); /* 更偏白的背景 */
       font-weight: bold;
       z-index: 1;
+      overflow: visible;
     }
     
-    /* 添加虚化边框效果 */
+    /* 虚化边界，只显示左右 */
     .highlight-average::before {
       content: "";
       position: absolute;
-      top: 0; bottom: 0; left: 0; right: 0;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(100, 150, 255, 0.4); /* 模拟外圈虚化 */
+      top: 10%;         /* 避免上下重叠 */
+      bottom: 10%;
+      left: -8px;
+      right: -8px;
+    
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(200, 220, 255, 0.35); /* 更柔和、更偏白 */
       z-index: -1;
     }
+    
   </style>
 </head>
 <body>
@@ -878,7 +884,7 @@
             <td>10</td>
             <td>Deepseek-VL2-Small</td>
             <td>16B</td>
-            <td>42.7</td>
+            <td class="highlight-average">42.7</td>
             <td>60.9</td>
             <td>50.6</td>
             <td>28.3</td>
