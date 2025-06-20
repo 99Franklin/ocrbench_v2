@@ -195,6 +195,24 @@
       text-align: center;
       margin: 2rem 0 1rem 0;
     }
+
+    /* 高亮 Average 列 */
+    .highlight-average {
+      position: relative;
+      background-color: rgba(173, 216, 230, 0.25); /* 淡蓝色背景 */
+      font-weight: bold;
+      z-index: 1;
+    }
+    
+    /* 添加虚化边框效果 */
+    .highlight-average::before {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0; left: 0; right: 0;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(100, 150, 255, 0.4); /* 模拟外圈虚化 */
+      z-index: -1;
+    }
   </style>
 </head>
 <body>
@@ -211,7 +229,7 @@
             <td>Rank</td>
             <td>Method</td>
             <td>LLM Size</td>
-            <td>Average</td>
+            <td class="highlight-average">Average</td>
             <td>Recognition</td>
             <td>Referring</td>
             <td>Spotting</td>
@@ -228,7 +246,7 @@
             <td>1</td>
             <td>Gemini1.5-Pro🥇</td>
             <td>-</td>
-            <td>51.6</td>
+            <td class="highlight-average">51.6</td>
             <td>59.1</td>
             <td>41.2</td>
             <td>6.6</td>
@@ -243,7 +261,7 @@
             <td>2</td>
             <td>GPT-4o🥈</td>
             <td>-</td>
-            <td>47.6</td>
+            <td class="highlight-average">47.6</td>
             <td>58.6</td>
             <td>23.4</td>
             <td>0.0</td>
@@ -258,7 +276,7 @@
             <td>3</td>
             <td>Claude3.5-sonnet🥉</td>
             <td>-</td>
-            <td>47.5</td>
+            <td class="highlight-average">47.5</td>
             <td>52.9</td>
             <td>24.9</td>
             <td>2.5</td>
@@ -273,7 +291,7 @@
             <td>4</td>
             <td>Step-1V</td>
             <td>-</td>
-            <td>46.8</td>
+            <td class="highlight-average">46.8</td>
             <td>56.7</td>
             <td>27.4</td>
             <td>2.6</td>
@@ -288,7 +306,7 @@
             <td>4</td>
             <td>InternVL3-14B</td>
             <td>14B</td>
-            <td>46.8</td>
+            <td class="highlight-average">46.8</td>
             <td>55.8</td>
             <td>24.5</td>
             <td>2.1</td>
@@ -303,7 +321,7 @@
             <td>5</td>
             <td>Ovis2-8B</td>
             <td>7B</td>
-            <td>46.1</td>
+            <td class="highlight-average">46.1</td>
             <td>54.2</td>
             <td>20.9</td>
             <td>0.0</td>
@@ -318,7 +336,7 @@
             <td>6</td>
             <td>InternVL3-8B</td>
             <td>8B</td>
-            <td>45.3</td>
+            <td class="highlight-average">45.3</td>
             <td>49.7</td>
             <td>22.3</td>
             <td>0.2</td>
@@ -333,7 +351,7 @@
             <td>7</td>
             <td>GPT-4o-mini</td>
             <td>-</td>
-            <td>44.1</td>
+            <td class="highlight-average">44.1</td>
             <td>55.3</td>
             <td>21.8</td>
             <td>0.0</td>
@@ -348,7 +366,7 @@
             <td>8</td>
             <td>SAIL-VL-1.6-8B</td>
             <td>8B</td>
-            <td>43.1</td>
+            <td class="highlight-average">43.1</td>
             <td>56.7</td>
             <td>24.1</td>
             <td>2.2</td>
@@ -363,7 +381,7 @@
             <td>9</td>
             <td>InternVL2.5-26B</td>
             <td>26B</td>
-            <td>42.6</td>
+            <td class="highlight-average">42.6</td>
             <td>53.5</td>
             <td>21.4</td>
             <td>0.0</td>
@@ -378,7 +396,7 @@
             <td>10</td>
             <td>Qwen2-VL-7B</td>
             <td>7B</td>
-            <td>42.3</td>
+            <td class="highlight-average">42.3</td>
             <td>47.0</td>
             <td>42.0</td>
             <td>1.5</td>
@@ -399,7 +417,7 @@
             <td>Rank</td>
             <td>Method</td>
             <td>LLM Size</td>
-            <td>Average</td>
+            <td class="highlight-average">Average</td>
             <td>Recognition</td>
             <td>Extraction</td>
             <td>Parsing</td>
@@ -413,7 +431,7 @@
             <td>1</td>
             <td>Ovis2-8B🥇</td>
             <td>7B</td>
-            <td>56.0</td>
+            <td class="highlight-average">56.0</td>
             <td>61.0</td>
             <td>67.7</td>
             <td>43.6</td>
@@ -425,7 +443,7 @@
             <td>2</td>
             <td>Gemini1.5-Pro🥈</td>
             <td>-</td>
-            <td>55.5</td>
+            <td class="highlight-average">55.5</td>
             <td>71.4</td>
             <td>63.8</td>
             <td>30.5</td>
@@ -437,7 +455,7 @@
             <td>3</td>
             <td>Kimi-VL-A3B-16B🥉</td>
             <td>16B</td>
-            <td>54.1</td>
+            <td class="highlight-average">54.1</td>
             <td>54.0</td>
             <td>71.1</td>
             <td>32.5</td>
@@ -449,7 +467,7 @@
             <td>4</td>
             <td>Step-1V</td>
             <td>-</td>
-            <td>53.4</td>
+            <td class="highlight-average">53.4</td>
             <td>65.2</td>
             <td>64.9</td>
             <td>33.1</td>
@@ -461,7 +479,7 @@
             <td>5</td>
             <td>InternVL3-14B</td>
             <td>14B</td>
-            <td>52.8</td>
+            <td class="highlight-average">52.8</td>
             <td>62.1</td>
             <td>59.5</td>
             <td>33.2</td>
@@ -473,7 +491,7 @@
             <td>6</td>
             <td>GLM-4v-9B</td>
             <td>9B</td>
-            <td>51.7</td>
+            <td class="highlight-average">51.7</td>
             <td>60.6</td>
             <td>65.2</td>
             <td>32.4</td>
@@ -485,7 +503,7 @@
             <td>7</td>
             <td>Qwen2.5-VL-7B</td>
             <td>8B</td>
-            <td>49.5</td>
+            <td class="highlight-average">49.5</td>
             <td>24.4</td>
             <td>78.9</td>
             <td>33.1</td>
@@ -497,7 +515,7 @@
             <td>8</td>
             <td>InternVL3-8B</td>
             <td>8B</td>
-            <td>49.0</td>
+            <td class="highlight-average">49.0</td>
             <td>57.7</td>
             <td>55.8</td>
             <td>29.9</td>
@@ -509,7 +527,7 @@
             <td>9</td>
             <td>Claude3.5-sonnet</td>
             <td>-</td>
-            <td>48.4</td>
+            <td class="highlight-average">48.4</td>
             <td>34.2</td>
             <td>62.5</td>
             <td>35.2</td>
@@ -521,7 +539,7 @@
             <td>10</td>
             <td>DeepSeek-VL2-Small</td>
             <td>16B</td>
-            <td>48.1</td>
+            <td class="highlight-average">48.1</td>
             <td>51.6</td>
             <td>56.3</td>
             <td>27.8</td>
@@ -547,7 +565,7 @@
             <td>Rank</td>
             <td>Method</td>
             <td>LLM Size</td>
-            <td>Average</td>
+            <td class="highlight-average">Average</td>
             <td>Recognition</td>
             <td>Referring</td>
             <td>Spotting</td>
@@ -564,7 +582,7 @@
                 <td>1</td>
                 <td>Llama Nemotron Nano VL 8B🥇</td>
                 <td>8B</td>
-                <td>60.2</td>
+                <td class="highlight-average">60.2</td>
                 <td>70.2</td>
                 <td>69.1</td>
                 <td>61.8</td>
@@ -579,7 +597,7 @@
                 <td>2</td>
                 <td>InternVL3-14B🥈</td>
                 <td>14B</td>
-                <td>52.6</td>
+                <td class="highlight-average">52.6</td>
                 <td>67.3</td>
                 <td>36.9</td>
                 <td>11.2</td>
@@ -594,7 +612,7 @@
                 <td>3</td>
                 <td>Gemini-Pro🥉</td>
                 <td>-</td>
-                <td>51.9</td>
+                <td class="highlight-average">51.9</td>
                 <td>61.2</td>
                 <td>39.5</td>
                 <td>13.5</td>
@@ -609,7 +627,7 @@
                 <td>4</td>
                 <td>Qwen2-VL-7B</td>
                 <td>7B</td>
-                <td>51.4</td>
+                <td class="highlight-average">51.4</td>
                 <td>72.1</td>
                 <td>47.9</td>
                 <td>17.5</td>
@@ -624,7 +642,7 @@
                 <td>5</td>
                 <td>InternVL2.5-26B</td>
                 <td>26B</td>
-                <td>49.4</td>
+                <td class="highlight-average">49.4</td>
                 <td>65.6</td>
                 <td>26.1</td>
                 <td>1.6</td>
@@ -639,7 +657,7 @@
                 <td>6</td>
                 <td>InternVL3-8B</td>
                 <td>8B</td>
-                <td>49.0</td>
+                <td class="highlight-average">49.0</td>
                 <td>68.6</td>
                 <td>30.4</td>
                 <td>8.8</td>
@@ -654,7 +672,7 @@
                 <td>7</td>
                 <td>Ovis2-8B</td>
                 <td>7B</td>
-                <td>47.7</td>
+                <td class="highlight-average">47.7</td>
                 <td>73.2</td>
                 <td>24.6</td>
                 <td>0.7</td>
@@ -669,7 +687,7 @@
                 <td>8</td>
                 <td>InternVL2-26B</td>
                 <td>26B</td>
-                <td>46.8</td>
+                <td class="highlight-average">46.8</td>
                 <td>63.4</td>
                 <td>26.1</td>
                 <td>0.0</td>
@@ -684,7 +702,7 @@
                 <td>9</td>
                 <td>Step-1V</td>
                 <td>-</td>
-                <td>46.7</td>
+                <td class="highlight-average">46.7</td>
                 <td>67.8</td>
                 <td>31.3</td>
                 <td>7.2</td>
@@ -699,7 +717,7 @@
                 <td>9</td>
                 <td>Qwen2.5-VL-7B</td>
                 <td>7B</td>
-                <td>46.7</td>
+                <td class="highlight-average">46.7</td>
                 <td>68.8</td>
                 <td>25.7</td>
                 <td>1.2</td>
@@ -714,7 +732,7 @@
                 <td>10</td>
                 <td>GPT-4o</td>
                 <td>-</td>
-                <td>46.5</td>
+                <td class="highlight-average">46.5</td>
                 <td>61.2</td>
                 <td>26.7</td>
                 <td>0.0</td>
@@ -738,7 +756,7 @@
             <td>Rank</td>
             <td>Method</td>
             <td>LLM Size</td>
-            <td>Average</td>
+            <td class="highlight-average">Average</td>
             <td>Recognition</td>
             <td>Extraction</td>
             <td>Parsing</td>
@@ -752,7 +770,7 @@
             <td>1</td>
             <td>InternVL3-14B🥇</td>
             <td>14B</td>
-            <td>55.7</td>
+            <td class="highlight-average">55.7</td>
             <td>66.2</td>
             <td>64.8</td>
             <td>33.5</td>
@@ -764,7 +782,7 @@
             <td>2</td>
             <td>Qwen2.5-VL-7B🥈</td>
             <td>8B</td>
-            <td>55.6</td>
+            <td class="highlight-average">55.6</td>
             <td>75.3</td>
             <td>61.4</td>
             <td>41.8</td>
@@ -776,7 +794,7 @@
             <td>3</td>
             <td>Internvl3-8B🥉</td>
             <td>8B</td>
-            <td>53.5</td>
+            <td class="highlight-average">53.5</td>
             <td>68.9</td>
             <td>62.0</td>
             <td>31.6</td>
@@ -788,7 +806,7 @@
             <td>4</td>
             <td>Ovis2-8B</td>
             <td>7B</td>
-            <td>49.2</td>
+            <td class="highlight-average">49.2</td>
             <td>72.2</td>
             <td>50.8</td>
             <td>37.7</td>
@@ -800,7 +818,7 @@
             <td>5</td>
             <td>InternVL2.5-8B</td>
             <td>8B</td>
-            <td>46.2</td>
+            <td class="highlight-average">46.2</td>
             <td>52.8</td>
             <td>52.8</td>
             <td>28.6</td>
@@ -812,7 +830,7 @@
             <td>6</td>
             <td>Kimi-VL-A3B-16B</td>
             <td>16B</td>
-            <td>45.5</td>
+            <td class="highlight-average">45.5</td>
             <td>57.2</td>
             <td>52.5</td>
             <td>31.5</td>
@@ -824,7 +842,7 @@
             <td>7</td>
             <td>InternVL2.5-26B</td>
             <td>26B</td>
-            <td>44.2</td>
+            <td class="highlight-average">44.2</td>
             <td>32.4</td>
             <td>56.1</td>
             <td>32.6</td>
@@ -836,7 +854,7 @@
             <td>8</td>
             <td>Gemini-Pro</td>
             <td>-</td>
-            <td>43.1</td>
+            <td class="highlight-average">43.1</td>
             <td>52.5</td>
             <td>47.3</td>
             <td>30.9</td>
@@ -848,7 +866,7 @@
             <td>9</td>
             <td>Qwen2-VL-7B</td>
             <td>7B</td>
-            <td>42.9</td>
+            <td class="highlight-average">42.9</td>
             <td>51.3</td>
             <td>51.4</td>
             <td>21.6</td>
