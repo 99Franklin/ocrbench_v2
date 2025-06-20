@@ -196,29 +196,6 @@
       margin: 2rem 0 1rem 0;
     }
 
-    /* 高亮 Average 列 */
-    .highlight-average {
-      position: relative;
-      background-color: rgba(240, 248, 255, 0.5); /* 更蓝一点的白底 */
-      font-weight: bold;
-      z-index: 1;
-      overflow: visible;
-    }
-    
-    /* 虚化边界（上下也连贯） */
-    .highlight-average::before {
-      content: "";
-      position: absolute;
-      top: -6px;       /* 轻微上下延伸 */
-      bottom: -6px;
-      left: -8px;
-      right: -8px;
-    
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(100, 150, 255, 0.5); /* 更蓝、更明显的虚化 */
-      z-index: -1;
-    }
-
     table {                           /* 让表格能放绝对定位伪元素 */
       position: relative;
       border-collapse: collapse;      /* 保证列之间没有空隙 */
