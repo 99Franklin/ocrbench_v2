@@ -218,6 +218,52 @@
       box-shadow: 0 0 25px rgba(100, 150, 255, 0.5); /* 更蓝、更明显的虚化 */
       z-index: -1;
     }
+
+    table {                           /* 让表格能放绝对定位伪元素 */
+      position: relative;
+      border-collapse: collapse;      /* 保证列之间没有空隙 */
+    }
+    
+    /* 第 4 列整列统一背景，不要隔行阴影 */
+    table td:nth-child(4),
+    table th:nth-child(4) {
+      background: rgba(240, 248, 255, 0.60);   /* 更明显一点的浅蓝底 */
+      border-bottom: none !important;          /* 去掉行分隔线 */
+    }
+    
+    /* 圆角只出现在第一/最后一行 */
+    table tr:first-child  td:nth-child(4) { border-top-left-radius: 12px;  border-top-right-radius: 12px; }
+    table tr:last-child   td:nth-child(4) { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+    
+    /* 额外去掉斑马纹对 Average 列的影响（如果你有 nth-child(even) 的行底色）*/
+    table tr:nth-child(even) td:nth-child(4) {
+      background: rgba(240, 248, 255, 0.60);
+    }
+    
+    /* ——关键：整列虚化发光——
+       用 table::after 做整列覆盖，宽度由 CSS 变量控制
+       （默认 140px，必要时可自己调或在媒体查询里微调） */
+    table::after {
+      --avg-width: 140px;          /* Average 列的大概宽度，可按需微调 */
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      /* 计算 4 列之前的宽度：用 CSS calc + nth-child(4) 的 offset 容易失误，
+         这里用 transform 方案最简单：先把伪元素拉满宽，再向左移动 100% - var(--avg-width) */
+      right:  calc(100% - var(--avg-width));
+      width:  var(--avg-width);
+      border-radius: 12px;
+      pointer-events: none;        /* 不遮挡鼠标 */
+      background: rgba(240, 248, 255, 0.25);   /* 叠一层淡背景，和列底色融合 */
+      box-shadow: 0 0 25px 16px rgba(100, 150, 255, 0.45);  /* 连贯的外发光 */
+      z-index: 1;
+    }
+    
+    /* 移动端稍微收窄虚化列宽度，避免太占空间 */
+    @media (max-width: 768px) {
+      table::after { --avg-width: 100px; }
+    }
     
   </style>
 </head>
