@@ -196,53 +196,79 @@
       margin: 2rem 0 1rem 0;
     }
 
-    table {                           /* 让表格能放绝对定位伪元素 */
-      position: relative;
-      border-collapse: collapse;      /* 保证列之间没有空隙 */
+    table {
+      position: relative;               /* 让伪元素定位基准 */
+      border-collapse: collapse;
     }
     
-    /* 第 4 列整列统一背景，不要隔行阴影 */
     table td:nth-child(4),
     table th:nth-child(4) {
-      background: rgba(240, 248, 255, 0.60);   /* 更明显一点的浅蓝底 */
-      border-bottom: none !important;          /* 去掉行分隔线 */
+      background: rgba(240,248,255,.60);
+      border-bottom: none!important;    /* 取消分隔线，避免被截断 */
     }
     
-    /* 圆角只出现在第一/最后一行 */
-    table tr:first-child  td:nth-child(4) { border-top-left-radius: 12px;  border-top-right-radius: 12px; }
-    table tr:last-child   td:nth-child(4) { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
-    
-    /* 额外去掉斑马纹对 Average 列的影响（如果你有 nth-child(even) 的行底色）*/
-    table tr:nth-child(even) td:nth-child(4) {
-      background: rgba(240, 248, 255, 0.60);
+    /* 行斑马纹对第 4 列失效 */
+    table tr:nth-child(even) td:nth-child(4){
+      background: rgba(240,248,255,.60);
     }
     
-    /* ——关键：整列虚化发光——
-       用 table::after 做整列覆盖，宽度由 CSS 变量控制
-       （默认 140px，必要时可自己调或在媒体查询里微调） */
-    table::after {
-      --avg-width: 140px;          /* Average 列的大概宽度，可按需微调 */
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      /* 计算 4 列之前的宽度：用 CSS calc + nth-child(4) 的 offset 容易失误，
-         这里用 transform 方案最简单：先把伪元素拉满宽，再向左移动 100% - var(--avg-width) */
-      right:  calc(100% - var(--avg-width));
-      width:  var(--avg-width);
-      border-radius: 12px;
-      pointer-events: none;        /* 不遮挡鼠标 */
-      background: rgba(240, 248, 255, 0.25);   /* 叠一层淡背景，和列底色融合 */
-      box-shadow: 0 0 25px 16px rgba(100, 150, 255, 0.45);  /* 连贯的外发光 */
-      z-index: 1;
-    }
+    /* 第一/最后一行圆角 */
+    table tr:first-child  td:nth-child(4){border-top-left-radius:12px;border-top-right-radius:12px}
+    table tr:last-child   td:nth-child(4){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
     
-    /* 移动端稍微收窄虚化列宽度，避免太占空间 */
-    @media (max-width: 768px) {
-      table::after { --avg-width: 100px; }
+    /* ---------- 连贯虚化伪元素 ---------- */
+    table::after{
+      content:'';
+      position:absolute;
+      top:0; bottom:0;
+      left:var(--avg-left,0);            /* 由 JS 动态写入 */
+      width:var(--avg-width,0);          /* 由 JS 动态写入 */
+      border-radius:12px;
+      pointer-events:none;
+      background:rgba(240,248,255,.25);
+      box-shadow:0 0 25px 16px rgba(100,150,255,.45);
+      z-index:1;
     }
     
   </style>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    /* 对页面里每张表执行一次定位计算 */
+    document.querySelectorAll('table').forEach(table => {
+      /* 取表头 or 第一行里的第 4 个单元格 */
+      const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
+      if (!avgCell) return;                       /* 没找到就跳过 */
+  
+      /* 表格 & 单元格相对视窗的矩形 */
+      const tableRect = table.getBoundingClientRect();
+      const cellRect  = avgCell.getBoundingClientRect();
+  
+      /* 计算 Average 列左侧到表格左侧的距离，以及列宽度 */
+      const left  = cellRect.left  - tableRect.left;
+      const width = cellRect.width;
+  
+      /* 写入 CSS 自定义属性，供 table::after 使用 */
+      table.style.setProperty('--avg-left',  `${left}px`);
+      table.style.setProperty('--avg-width', `${width}px`);
+    });
+  });
+  
+  /* 如果页面以后有窗口大小变化，附带自适应（可选） */
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('table').forEach(table => {
+      const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
+      if (!avgCell) return;
+      const tableRect = table.getBoundingClientRect();
+      const cellRect  = avgCell.getBoundingClientRect();
+      const left  = cellRect.left - tableRect.left;
+      const width = cellRect.width;
+      table.style.setProperty('--avg-left',  `${left}px`);
+      table.style.setProperty('--avg-width', `${width}px`);
+    });
+  });
+  </script>
+  
 </head>
 <body>
 
