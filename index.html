@@ -594,30 +594,33 @@
 
       <br> 
 
-    <style>
-      .info-box {
-        background-color: #d0e0f0; /* 更暗的蓝色背景 */
-        border-left: 4px solid #004477; /* 更暗的边框蓝色 */
-        padding: 0.6em 1em; /* 减少上下 padding */
-        margin-bottom: 1em;
-        border-radius: 5px;
-        font-family: Arial, sans-serif;
-        text-align: left; /* 文本左对齐 */
-        color: #000; /* 确保文字颜色对比清晰 */
-      }
-    
-      .info-title {
-        font-weight: bold;
-        margin-bottom: 0.3em;
-      }
-    </style>
-
-    <div class="info-box">
-      <p>We aim to update this benchmark every quarter. We sincerely welcome community contributions. If you have open-source models on Hugging Face or accessible APIs, sharing them with us would greatly help improve and expand the leaderboard. You can contact us at: ling_fu@hust.edu.cn</p>
-    </div>
-    <div class="info-box">
-      <p>We have observed that some methods adopt absolute encoding for prompt inputs when tackling specialized tasks. For example, Qwen2.5VL uses a format like {"bbox_2d": [x1, y1, x2, y2], "text_content": "xxx"} for text spotting. After modifying the prompt accordingly, Qwen2.5VL-7B achieved a text spotting score of 51.6, showing a significant improvement compared to the default prompt currently used in OCRBench v2. We encourage you to share the evaluation results using prompts adapted to your model's input format. This will help us further improve and refine the leaderboard.</p>
-    </div>
+      <style>
+        .info-box {
+          background-color: #f5f9fc; /* 更加接近白色的蓝灰色 */
+          border-left: 3px solid #aacbe3; /* 柔和一点的蓝色边框 */
+          padding: 0.3em 1em; /* 更小的上下间距 */
+          margin-bottom: 0.8em;
+          border-radius: 4px;
+          font-family: Arial, sans-serif;
+          text-align: left; /* 明确左对齐 */
+          color: #333; /* 更柔和的深灰色文本 */
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      
+        .info-title {
+          font-weight: bold;
+          margin-bottom: 0.3em;
+        }
+      </style>
+      
+      <div class="info-box">
+        <p>We aim to update this benchmark every quarter. We sincerely welcome community contributions. If you have open-source models on Hugging Face or accessible APIs, sharing them with us would greatly help improve and expand the leaderboard. You can contact us at: ling_fu@hust.edu.cn</p>
+      </div>
+      
+      <div class="info-box">
+        <p>We have observed that some methods adopt absolute encoding for prompt inputs when tackling specialized tasks. For example, Qwen2.5VL uses a format like {"bbox_2d": [x1, y1, x2, y2], "text_content": "xxx"} for text spotting. After modifying the prompt accordingly, Qwen2.5VL-7B achieved a text spotting score of 51.6, showing a significant improvement compared to the default prompt currently used in OCRBench v2. We encourage you to share the evaluation results using prompts adapted to your model's input format. This will help us further improve and refine the leaderboard.</p>
+      </div>
       
     </div>
   </div>
