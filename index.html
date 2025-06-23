@@ -201,8 +201,8 @@
       border-collapse: collapse;
     }
     
-    table td:nth-child(4),
-    table th:nth-child(4) {
+    table td:nth-child(5),
+    table th:nth-child(5) {
       position: relative;
       z-index: 2; 
       font-weight: 700;
@@ -211,13 +211,13 @@
     }
     
     /* 行斑马纹对第 4 列失效 */
-    table tr:nth-child(even) td:nth-child(4){
+    table tr:nth-child(even) td:nth-child(5){
       background: rgba(240,248,255,.60);
     }
     
     /* 第一/最后一行圆角 */
-    table tr:first-child  td:nth-child(4){border-top-left-radius:12px;border-top-right-radius:12px}
-    table tr:last-child   td:nth-child(4){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+    table tr:first-child  td:nth-child(5){border-top-left-radius:12px;border-top-right-radius:12px}
+    table tr:last-child   td:nth-child(5){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
     
     /* ---------- 连贯虚化伪元素 ---------- */
     table::after{
@@ -232,6 +232,49 @@
       box-shadow:0 0 25px 16px rgba(100,150,255,.45);
       z-index:0;
     }
+
+
+    /* 时期选择器样式 */
+    .period-selector {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    
+    .period-selector label {
+      font-weight: 600;
+      margin-right: 1rem;
+      color: #333;
+    }
+    
+    .period-selector select {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      background-color: #fff;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    
+    .period-selector select:hover {
+      border-color: #4a90e2;
+    }
+    
+    .period-selector select:focus {
+      outline: none;
+      border-color: #4a90e2;
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    }
+    
+    /* 隐藏非当前时期的表格 */
+    .period-section {
+      display: none;
+    }
+    
+    .period-section.active {
+      display: block;
+    }
+    
     
   </style>
 
@@ -240,7 +283,7 @@
     /* 对页面里每张表执行一次定位计算 */
     document.querySelectorAll('table').forEach(table => {
       /* 取表头 or 第一行里的第 4 个单元格 */
-      const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
+      const avgCell = table.querySelector('tr:first-child th:nth-child(5), tr:first-child td:nth-child(5)');
       if (!avgCell) return;                       /* 没找到就跳过 */
   
       /* 表格 & 单元格相对视窗的矩形 */
@@ -260,7 +303,7 @@
   /* 如果页面以后有窗口大小变化，附带自适应（可选） */
   window.addEventListener('resize', () => {
     document.querySelectorAll('table').forEach(table => {
-      const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
+      const avgCell = table.querySelector('tr:first-child th:nth-child(5), tr:first-child td:nth-child(5)');
       if (!avgCell) return;
       const tableRect = table.getBoundingClientRect();
       const cellRect  = avgCell.getBoundingClientRect();
@@ -278,14 +321,25 @@
 <section class="section">
   <div class="container">
     <h2 class="title">Leaderboard on Private data</h2>
-    <div class="content">
 
+    <!-- 添加时期选择器 -->
+    <div class="period-selector">
+      <label for="periodSelect">Select Period:</label>
+      <select id="periodSelect">
+        <option value="2025-01">2025.06 (Current)</option>
+        <option value="2025-06">2025.09</option>
+      </select>
+    </div>
+
+    
+    <div class="period-section active" data-period="2025-06">
       <p class="table-title">Performance of LMMs on English tasks</p>
       <table>
         <thead>
           <tr>
             <td>Rank</td>
             <td>Method</td>
+            <td>Open-source</td> <!-- 新增列 -->
             <td>LLM Size</td>
             <td class="highlight-average">Average</td>
             <td>Recognition</td>
@@ -296,13 +350,13 @@
             <td>Calculation</td>
             <td>Understanding</td>
             <td>Reasoning</td>
-
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>1</td>
             <td>Gemini-2.5-Pro🥇</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">59.3</td>
             <td>70.9</td>
@@ -318,6 +372,7 @@
           <tr>
             <td>2</td>
             <td>Llama-3.1-Nemotron-Nano-VL-8B-V1🥈</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">56.4</td>
             <td>62.9</td>
@@ -333,6 +388,7 @@
           <tr>
             <td>3</td>
             <td>Gemini1.5-Pro🥉</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">51.6</td>
             <td>59.1</td>
@@ -348,6 +404,7 @@
           <tr>
             <td>4</td>
             <td>GPT-4o</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">47.6</td>
             <td>58.6</td>
@@ -363,6 +420,7 @@
           <tr>
             <td>5</td>
             <td>Claude3.5-sonnet</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">47.5</td>
             <td>52.9</td>
@@ -378,6 +436,7 @@
           <tr>
             <td>6</td>
             <td>Step-1V</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">46.8</td>
             <td>56.7</td>
@@ -393,6 +452,7 @@
           <tr>
             <td>7</td>
             <td>InternVL3-14B</td>
+            <td>Yes</td>
             <td>14B</td>
             <td class="highlight-average">46.8</td>
             <td>55.8</td>
@@ -408,6 +468,7 @@
           <tr>
             <td>8</td>
             <td>Ovis2-8B</td>
+            <td>Yes</td>
             <td>7B</td>
             <td class="highlight-average">46.1</td>
             <td>54.2</td>
@@ -423,6 +484,7 @@
           <tr>
             <td>9</td>
             <td>InternVL3-8B</td>
+            <td>Yes</td>
             <td>8B</td>
             <td class="highlight-average">45.3</td>
             <td>49.7</td>
@@ -438,6 +500,7 @@
           <tr>
             <td>10</td>
             <td>GPT-4o-mini</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">44.1</td>
             <td>55.3</td>
@@ -453,20 +516,24 @@
         </tbody>
       </table>
 
+    <div class="period-section active" data-period="2025-06">
       <p class="table-title">Performance of LMMs on Chinese tasks</p>
       <table>
         <thead>
           <tr>
             <td>Rank</td>
             <td>Method</td>
+            <td>Open-source</td> <!-- 新增列 -->
             <td>LLM Size</td>
             <td class="highlight-average">Average</td>
             <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
             <td>Extraction</td>
             <td>Parsing</td>
+            <td>Calculation</td>
             <td>Understanding</td>
             <td>Reasoning</td>
-            
           </tr>
         </thead>
         <tbody>
@@ -474,6 +541,7 @@
           <tr>
             <td>1</td>
             <td>Gemini-2.5-Pro🥇</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">62.2</td>
             <td>72.0</td>
@@ -487,6 +555,7 @@
           <tr>
             <td>2</td>
             <td>Ovis2-8B🥈</td>
+            <td>Yes</td>
             <td>7B</td>
             <td class="highlight-average">56.0</td>
             <td>61.0</td>
@@ -499,6 +568,7 @@
           <tr>
             <td>3</td>
             <td>Gemini1.5-Pro🥉</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">55.5</td>
             <td>71.4</td>
@@ -511,6 +581,7 @@
           <tr>
             <td>4</td>
             <td>Kimi-VL-A3B-16B</td>
+            <td>Yes</td>
             <td>16B</td>
             <td class="highlight-average">54.1</td>
             <td>54.0</td>
@@ -523,6 +594,7 @@
           <tr>
             <td>5</td>
             <td>Step-1V</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">53.4</td>
             <td>65.2</td>
@@ -535,6 +607,7 @@
           <tr>
             <td>6</td>
             <td>InternVL3-14B</td>
+            <td>Yes</td>
             <td>14B</td>
             <td class="highlight-average">52.8</td>
             <td>62.1</td>
@@ -547,6 +620,7 @@
           <tr>
             <td>7</td>
             <td>GLM-4v-9B</td>
+            <td>Yes</td>
             <td>9B</td>
             <td class="highlight-average">51.7</td>
             <td>60.6</td>
@@ -559,6 +633,7 @@
           <tr>
             <td>8</td>
             <td>Qwen2.5-VL-7B</td>
+            <td>Yes</td>
             <td>8B</td>
             <td class="highlight-average">49.5</td>
             <td>24.4</td>
@@ -571,6 +646,7 @@
           <tr>
             <td>9</td>
             <td>InternVL3-8B</td>
+            <td>Yes</td>
             <td>8B</td>
             <td class="highlight-average">49.0</td>
             <td>57.7</td>
@@ -583,6 +659,7 @@
           <tr>
             <td>10</td>
             <td>Claude3.5-sonnet</td>
+            <td>Yes</td>
             <td>-</td>
             <td class="highlight-average">48.4</td>
             <td>34.2</td>
@@ -596,6 +673,348 @@
        </tbody>
       </table>
 
+
+    <div class="period-section active" data-period="2025-09">
+      <p class="table-title">Performance of LMMs on English tasks</p>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Open-source</td> <!-- 新增列 -->
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Gemini-2.5-Pro🥇</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">59.3</td>
+            <td>70.9</td>
+            <td>45.8</td>
+            <td>13.4</td>
+            <td>93.7</td>
+            <td>26.9</td>
+            <td>84.6</td>
+            <td>75.8</td>
+            <td>63.0</td>
+            
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Llama-3.1-Nemotron-Nano-VL-8B-V1🥈</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">56.4</td>
+            <td>62.9</td>
+            <td>61.3</td>
+            <td>68.6</td>
+            <td>88.2</td>
+            <td>10.0</td>
+            <td>44.1</td>
+            <td>75.3</td>
+            <td>41.0</td>
+            
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Gemini1.5-Pro🥉</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">51.6</td>
+            <td>59.1</td>
+            <td>41.2</td>
+            <td>6.6</td>
+            <td>89.5</td>
+            <td>22.4</td>
+            <td>54.7</td>
+            <td>78.8</td>
+            <td>60.3</td>
+            
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>GPT-4o</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">47.6</td>
+            <td>58.6</td>
+            <td>23.4</td>
+            <td>0.0</td>
+            <td>87.4</td>
+            <td>23.1</td>
+            <td>51.6</td>
+            <td>74.4</td>
+            <td>62.3</td>
+            
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Claude3.5-sonnet</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">47.5</td>
+            <td>52.9</td>
+            <td>24.9</td>
+            <td>2.5</td>
+            <td>86.9</td>
+            <td>23.8</td>
+            <td>61.4</td>
+            <td>74.4</td>
+            <td>53.0</td>
+            
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Step-1V</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">46.8</td>
+            <td>56.7</td>
+            <td>27.4</td>
+            <td>2.6</td>
+            <td>86.3</td>
+            <td>33.3</td>
+            <td>42.6</td>
+            <td>76.6</td>
+            <td>48.7</td>
+            
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>InternVL3-14B</td>
+            <td>Yes</td>
+            <td>14B</td>
+            <td class="highlight-average">46.8</td>
+            <td>55.8</td>
+            <td>24.5</td>
+            <td>2.1</td>
+            <td>89.3</td>
+            <td>21.0</td>
+            <td>59.5</td>
+            <td>72.0</td>
+            <td>50.0</td>
+            
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Ovis2-8B</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">46.1</td>
+            <td>54.2</td>
+            <td>20.9</td>
+            <td>0.0</td>
+            <td>83.6</td>
+            <td>24.2</td>
+            <td>54.7</td>
+            <td>74.1</td>
+            <td>57.3</td>
+            
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>InternVL3-8B</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">45.3</td>
+            <td>49.7</td>
+            <td>22.3</td>
+            <td>0.2</td>
+            <td>86.8</td>
+            <td>22.4</td>
+            <td>57.0</td>
+            <td>70.7</td>
+            <td>53.0</td>
+            
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>GPT-4o-mini</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">44.1</td>
+            <td>55.3</td>
+            <td>21.8</td>
+            <td>0.0</td>
+            <td>85.4</td>
+            <td>20.6</td>
+            <td>45.2</td>
+            <td>75.5</td>
+            <td>49.0</td>
+          </tr>
+        
+        </tbody>
+      </table>
+
+    <div class="period-section active" data-period="2025-09">
+      <p class="table-title">Performance of LMMs on Chinese tasks</p>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Open-source</td> <!-- 新增列 -->
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>Gemini-2.5-Pro🥇</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">62.2</td>
+            <td>72.0</td>
+            <td>74.0</td>
+            <td>35.2</td>
+            <td>90.0</td>
+            <td>39.7</td>
+            
+          </tr>
+          
+          <tr>
+            <td>2</td>
+            <td>Ovis2-8B🥈</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">56.0</td>
+            <td>61.0</td>
+            <td>67.7</td>
+            <td>43.6</td>
+            <td>82.0</td>
+            <td>25.6</td>
+            
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Gemini1.5-Pro🥉</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">55.5</td>
+            <td>71.4</td>
+            <td>63.8</td>
+            <td>30.5</td>
+            <td>82.0</td>
+            <td>29.9</td>
+            
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Kimi-VL-A3B-16B</td>
+            <td>Yes</td>
+            <td>16B</td>
+            <td class="highlight-average">54.1</td>
+            <td>54.0</td>
+            <td>71.1</td>
+            <td>32.5</td>
+            <td>84.0</td>
+            <td>28.7</td>
+            
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Step-1V</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">53.4</td>
+            <td>65.2</td>
+            <td>64.9</td>
+            <td>33.1</td>
+            <td>78.0</td>
+            <td>25.5</td>
+            
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>InternVL3-14B</td>
+            <td>Yes</td>
+            <td>14B</td>
+            <td class="highlight-average">52.8</td>
+            <td>62.1</td>
+            <td>59.5</td>
+            <td>33.2</td>
+            <td>80.0</td>
+            <td>29.2</td>
+            
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>GLM-4v-9B</td>
+            <td>Yes</td>
+            <td>9B</td>
+            <td class="highlight-average">51.7</td>
+            <td>60.6</td>
+            <td>65.2</td>
+            <td>32.4</td>
+            <td>82.0</td>
+            <td>18.2</td>
+            
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Qwen2.5-VL-7B</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">49.5</td>
+            <td>24.4</td>
+            <td>78.9</td>
+            <td>33.1</td>
+            <td>82.0</td>
+            <td>29.0</td>
+            
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>InternVL3-8B</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">49.0</td>
+            <td>57.7</td>
+            <td>55.8</td>
+            <td>29.9</td>
+            <td>72.0</td>
+            <td>29.4</td>
+            
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Claude3.5-sonnet</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">48.4</td>
+            <td>34.2</td>
+            <td>62.5</td>
+            <td>35.2</td>
+            <td>78.0</td>
+            <td>32.2</td>
+            
+          </tr>
+
+       </tbody>
+      </table>
+      
       <br> 
 
       <style>
