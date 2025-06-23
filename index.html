@@ -252,8 +252,8 @@
       const width = cellRect.width;
   
       /* 写入 CSS 自定义属性，供 table::after 使用 */
-      table.style.setProperty('--avg-left',  ${left}px);
-      table.style.setProperty('--avg-width', ${width}px);
+      table.style.setProperty('--avg-left',  `${left}px`);
+      table.style.setProperty('--avg-width', `${width}px`);
     });
   });
   
@@ -266,8 +266,8 @@
       const cellRect  = avgCell.getBoundingClientRect();
       const left  = cellRect.left - tableRect.left;
       const width = cellRect.width;
-      table.style.setProperty('--avg-left',  ${left}px);
-      table.style.setProperty('--avg-width', ${width}px);
+      table.style.setProperty('--avg-left',  `${left}px`);
+      table.style.setProperty('--avg-width', `${width}px`);
     });
   });
   </script>
