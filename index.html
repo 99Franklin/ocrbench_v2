@@ -1,759 +1,392 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning ">
-  <meta name="keywords" content="OCRBench v2">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OCRBench v2</title>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning ">
+  <meta name="keywords" content="OCRBench v2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OCRBench v2</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/web.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/web.png">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 <body>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-    </div>
-   
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
 </nav>
 
-
 <section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning</h1>
-  
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2501.00321"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/Yuliang-Liu/MultimodalOCR"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://drive.google.com/file/d/1Hk1TMu--7nr5vJ7iaNwMQZ_Iw9W_KI3C/view?usp=sharing"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-               </span>
-              <span class="link-block">
-                <a href="https://huggingface.co/datasets/ling99/OCRBench_v2" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon has-text-white">
-                    <i class="fa-solid fa-trophy" aria-hidden="true"></i>
-                      <!-- <p style="font-size:18px">🏆</p> -->
-                  </span>
-                  <span>Huggingface</span>
-                </a>
-              </span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning</h1>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+                            <span class="link-block">
+                <a href="https://arxiv.org/abs/2501.00321" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+                            <span class="link-block">
+                <a href="https://github.com/Yuliang-Liu/MultimodalOCR" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+                            <span class="link-block">
+                <a href="https://drive.google.com/file/d/1Hk1TMu--7nr5vJ7iaNwMQZ_Iw9W_KI3C/view?usp=sharing" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="far fa-images"></i></span>
+                  <span>Data</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/ling99/OCRBench_v2" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon has-text-white"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+                  <span>Huggingface</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-  <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Leaderboard</title>
-  <style>
-    body {
-      background-color: #ffffff;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .section {
-      padding: 2rem 1rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2.title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      color: #333;
-    }
-
-    .content p {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    table {
-      width: 100%;
-      max-width: 100%;
-      border-collapse: collapse;
-      margin: 0 auto 2rem auto;
-      font-size: 14px;
-      text-align: center;
-      box-shadow: 0 0 8px rgba(0,0,0,0.05);
-    }
-
-    thead {
-      background-color: #e6f0fa;
-      color: #333;
-    }
-
-    thead tr td {
-      font-weight: bold;
-      padding: 0.6rem;
-      border-bottom: 2px solid #ccc;
-    }
-
-    tbody tr td {
-      padding: 0.5rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    tbody tr:nth-child(even) {
-      background-color: #f9fcff;
-    }
-
-    tbody tr:hover {
-      background-color: #e0f3ff;
-      transition: background-color 0.2s ease;
-    }
-
-    @media (max-width: 768px) {
-      table {
-        font-size: 12px;
-      }
-    }
-
-    .table-title {
-      font-weight: bold;
-      text-align: center;
-      margin: 2rem 0 1rem 0;
-    }
-
-    table {
-      position: relative;               /* 让伪元素定位基准 */
-      border-collapse: collapse;
-    }
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Leaderboard</title>
+<style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .section { padding: 2rem 1rem; }
+    .container { max-width: 1200px; margin: auto; }
+    h2.title { font-size: 2rem; margin-bottom: 1rem; text-align: center; color: #333; }
+    .content p { font-size: 1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.5rem; text-align: center; }
+    table { width: 100%; max-width: 100%; border-collapse: collapse; margin: 0 auto 2rem auto; font-size: 14px; text-align: center; box-shadow: 0 0 8px rgba(0,0,0,0.05); }
+    thead { background-color: #e6f0fa; color: #333; }
+    thead tr td { font-weight: bold; padding: 0.6rem; border-bottom: 2px solid #ccc; }
+    tbody tr td { padding: 0.5rem; border-bottom: 1px solid #eee; }
+    tbody tr:nth-child(even) { background-color: #f9fcff; }
+    tbody tr:hover { background-color: #e0f3ff; transition: background-color 0.2s ease; }
+    @media (max-width: 768px) { table { font-size: 12px; } }
+    .table-title { font-weight: bold; text-align: center; margin: 2rem 0 1rem 0; }
+    table { position: relative; border-collapse: collapse; }
+    table td:nth-child(4), table th:nth-child(4) { position: relative; z-index: 2; font-weight: 700; background: rgba(240,248,255,.60); border-bottom: none!important; }
+    table tr:nth-child(even) td:nth-child(4) { background: rgba(240,248,255,.60); }
+    table tr:first-child td:nth-child(4) { border-top-left-radius:12px; border-top-right-radius:12px }
+    table tr:last-child td:nth-child(4) { border-bottom-left-radius:12px; border-bottom-right-radius:12px }
+    table::after { content:''; position:absolute; top:0; bottom:0; left:var(--avg-left,0); width:var(--avg-width,0); border-radius:12px; pointer-events:none; background:rgba(240,248,255,.25); box-shadow:0 0 25px 16px rgba(100,150,255,.45); z-index:0; }
     
-    table td:nth-child(4),
-    table th:nth-child(4) {
-      position: relative;
-      z-index: 2; 
-      font-weight: 700;
-      background: rgba(240,248,255,.60);
-      border-bottom: none!important;    /* 取消分隔线，避免被截断 */
+    /* 新增：日期选择器样式 */
+    .date-selector-container {
+        text-align: center;
+        margin-bottom: 2rem;
     }
-    
-    /* 行斑马纹对第 4 列失效 */
-    table tr:nth-child(even) td:nth-child(4){
-      background: rgba(240,248,255,.60);
+    .date-selector-container label {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #333;
     }
-    
-    /* 第一/最后一行圆角 */
-    table tr:first-child  td:nth-child(4){border-top-left-radius:12px;border-top-right-radius:12px}
-    table tr:last-child   td:nth-child(4){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
-    
-    /* ---------- 连贯虚化伪元素 ---------- */
-    table::after{
-      content:'';
-      position:absolute;
-      top:0; bottom:0;
-      left:var(--avg-left,0);            /* 由 JS 动态写入 */
-      width:var(--avg-width,0);          /* 由 JS 动态写入 */
-      border-radius:12px;
-      pointer-events:none;
-      background:rgba(240,248,255,.25);
-      box-shadow:0 0 25px 16px rgba(100,150,255,.45);
-      z-index:0;
+    #date-selector {
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        background-color: #f9fcff;
     }
-    
-  </style>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    /* 对页面里每张表执行一次定位计算 */
-    document.querySelectorAll('table').forEach(table => {
-      /* 取表头 or 第一行里的第 4 个单元格 */
-      const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
-      if (!avgCell) return;                       /* 没找到就跳过 */
-  
-      /* 表格 & 单元格相对视窗的矩形 */
-      const tableRect = table.getBoundingClientRect();
-      const cellRect  = avgCell.getBoundingClientRect();
-  
-      /* 计算 Average 列左侧到表格左侧的距离，以及列宽度 */
-      const left  = cellRect.left  - tableRect.left;
-      const width = cellRect.width;
-  
-      /* 写入 CSS 自定义属性，供 table::after 使用 */
-      table.style.setProperty('--avg-left',  `${left}px`);
-      table.style.setProperty('--avg-width', `${width}px`);
-    });
-  });
-  
-  /* 如果页面以后有窗口大小变化，附带自适应（可选） */
-  window.addEventListener('resize', () => {
-    document.querySelectorAll('table').forEach(table => {
-      const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
-      if (!avgCell) return;
-      const tableRect = table.getBoundingClientRect();
-      const cellRect  = avgCell.getBoundingClientRect();
-      const left  = cellRect.left - tableRect.left;
-      const width = cellRect.width;
-      table.style.setProperty('--avg-left',  `${left}px`);
-      table.style.setProperty('--avg-width', `${width}px`);
-    });
-  });
-  </script>
-  
+</style>
 </head>
 <body>
 
 <section class="section">
-  <div class="container">
-    <h2 class="title">Leaderboard on Private data</h2>
-    <div class="content">
+  <div class="container">
+    <h2 class="title">Leaderboard on Private data</h2>
 
-      <p class="table-title">Performance of LMMs on English tasks</p>
-      <table>
-        <thead>
-          <tr>
-            <td>Rank</td>
-            <td>Method</td>
-            <td>LLM Size</td>
-            <td class="highlight-average">Average</td>
-            <td>Recognition</td>
-            <td>Referring</td>
-            <td>Spotting</td>
-            <td>Extraction</td>
-            <td>Parsing</td>
-            <td>Calculation</td>
-            <td>Understanding</td>
-            <td>Reasoning</td>
+    <div class="date-selector-container">
+        <label for="date-selector">选择榜单日期:</label>
+        <select id="date-selector">
+            <option value="2025-06-23">2025-06-23</option>
+            <option value="2025-03-23">2025-03-23 (历史样本)</option>
+        </select>
+    </div>
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Gemini-2.5-Pro🥇</td>
-            <td>-</td>
-            <td class="highlight-average">59.3</td>
-            <td>70.9</td>
-            <td>45.8</td>
-            <td>13.4</td>
-            <td>93.7</td>
-            <td>26.9</td>
-            <td>84.6</td>
-            <td>75.8</td>
-            <td>63.0</td>
-            
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Llama-3.1-Nemotron-Nano-VL-8B-V1🥈</td>
-            <td>-</td>
-            <td class="highlight-average">56.4</td>
-            <td>62.9</td>
-            <td>61.3</td>
-            <td>68.6</td>
-            <td>88.2</td>
-            <td>10.0</td>
-            <td>44.1</td>
-            <td>75.3</td>
-            <td>41.0</td>
-            
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Gemini1.5-Pro🥉</td>
-            <td>-</td>
-            <td class="highlight-average">51.6</td>
-            <td>59.1</td>
-            <td>41.2</td>
-            <td>6.6</td>
-            <td>89.5</td>
-            <td>22.4</td>
-            <td>54.7</td>
-            <td>78.8</td>
-            <td>60.3</td>
-            
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>GPT-4o</td>
-            <td>-</td>
-            <td class="highlight-average">47.6</td>
-            <td>58.6</td>
-            <td>23.4</td>
-            <td>0.0</td>
-            <td>87.4</td>
-            <td>23.1</td>
-            <td>51.6</td>
-            <td>74.4</td>
-            <td>62.3</td>
-            
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Claude3.5-sonnet</td>
-            <td>-</td>
-            <td class="highlight-average">47.5</td>
-            <td>52.9</td>
-            <td>24.9</td>
-            <td>2.5</td>
-            <td>86.9</td>
-            <td>23.8</td>
-            <td>61.4</td>
-            <td>74.4</td>
-            <td>53.0</td>
-            
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Step-1V</td>
-            <td>-</td>
-            <td class="highlight-average">46.8</td>
-            <td>56.7</td>
-            <td>27.4</td>
-            <td>2.6</td>
-            <td>86.3</td>
-            <td>33.3</td>
-            <td>42.6</td>
-            <td>76.6</td>
-            <td>48.7</td>
-            
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>InternVL3-14B</td>
-            <td>14B</td>
-            <td class="highlight-average">46.8</td>
-            <td>55.8</td>
-            <td>24.5</td>
-            <td>2.1</td>
-            <td>89.3</td>
-            <td>21.0</td>
-            <td>59.5</td>
-            <td>72.0</td>
-            <td>50.0</td>
-            
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>Ovis2-8B</td>
-            <td>7B</td>
-            <td class="highlight-average">46.1</td>
-            <td>54.2</td>
-            <td>20.9</td>
-            <td>0.0</td>
-            <td>83.6</td>
-            <td>24.2</td>
-            <td>54.7</td>
-            <td>74.1</td>
-            <td>57.3</td>
-            
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>InternVL3-8B</td>
-            <td>8B</td>
-            <td class="highlight-average">45.3</td>
-            <td>49.7</td>
-            <td>22.3</td>
-            <td>0.2</td>
-            <td>86.8</td>
-            <td>22.4</td>
-            <td>57.0</td>
-            <td>70.7</td>
-            <td>53.0</td>
-            
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>GPT-4o-mini</td>
-            <td>-</td>
-            <td class="highlight-average">44.1</td>
-            <td>55.3</td>
-            <td>21.8</td>
-            <td>0.0</td>
-            <td>85.4</td>
-            <td>20.6</td>
-            <td>45.2</td>
-            <td>75.5</td>
-            <td>49.0</td>
-          </tr>
+    <div class="content">
+      <p class="table-title">Performance of LMMs on English tasks</p>
+      <table id="english-leaderboard">         <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody id="english-leaderboard-tbody">         </tbody>
+      </table>
+
+      <p class="table-title">Performance of LMMs on Chinese tasks</p>
+      <table id="chinese-leaderboard">         <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody id="chinese-leaderboard-tbody">         </tbody>
+      </table>
+
+      <br> 
+          </div>
+  </div>
+</section>
+
+<script>
+// 步骤 1: 将所有数据结构化
+// 您可以在这里添加更多日期和对应的数据
+const leaderboardData = {
+    "2025-06-23": {
+        english: [
+            { rank: 1, method: "Gemini-2.5-Pro🥇", llm_size: "-", average: 59.3, recognition: 70.9, referring: 45.8, spotting: 13.4, extraction: 93.7, parsing: 26.9, calculation: 84.6, understanding: 75.8, reasoning: 63.0 },
+            { rank: 2, method: "Llama-3.1-Nemotron-Nano-VL-8B-V1🥈", llm_size: "-", average: 56.4, recognition: 62.9, referring: 61.3, spotting: 68.6, extraction: 88.2, parsing: 10.0, calculation: 44.1, understanding: 75.3, reasoning: 41.0 },
+            { rank: 3, method: "Gemini1.5-Pro🥉", llm_size: "-", average: 51.6, recognition: 59.1, referring: 41.2, spotting: 6.6, extraction: 89.5, parsing: 22.4, calculation: 54.7, understanding: 78.8, reasoning: 60.3 },
+            { rank: 4, method: "GPT-4o", llm_size: "-", average: 47.6, recognition: 58.6, referring: 23.4, spotting: 0.0, extraction: 87.4, parsing: 23.1, calculation: 51.6, understanding: 74.4, reasoning: 62.3 },
+            { rank: 5, method: "Claude3.5-sonnet", llm_size: "-", average: 47.5, recognition: 52.9, referring: 24.9, spotting: 2.5, extraction: 86.9, parsing: 23.8, calculation: 61.4, understanding: 74.4, reasoning: 53.0 },
+            { rank: 6, method: "Step-1V", llm_size: "-", average: 46.8, recognition: 56.7, referring: 27.4, spotting: 2.6, extraction: 86.3, parsing: 33.3, calculation: 42.6, understanding: 76.6, reasoning: 48.7 },
+            { rank: 7, method: "InternVL3-14B", llm_size: "14B", average: 46.8, recognition: 55.8, referring: 24.5, spotting: 2.1, extraction: 89.3, parsing: 21.0, calculation: 59.5, understanding: 72.0, reasoning: 50.0 },
+            { rank: 8, method: "Ovis2-8B", llm_size: "7B", average: 46.1, recognition: 54.2, referring: 20.9, spotting: 0.0, extraction: 83.6, parsing: 24.2, calculation: 54.7, understanding: 74.1, reasoning: 57.3 },
+            { rank: 9, method: "InternVL3-8B", llm_size: "8B", average: 45.3, recognition: 49.7, referring: 22.3, spotting: 0.2, extraction: 86.8, parsing: 22.4, calculation: 57.0, understanding: 70.7, reasoning: 53.0 },
+            { rank: 10, method: "GPT-4o-mini", llm_size: "-", average: 44.1, recognition: 55.3, referring: 21.8, spotting: 0.0, extraction: 85.4, parsing: 20.6, calculation: 45.2, understanding: 75.5, reasoning: 49.0 }
+        ],
+        chinese: [
+            { rank: 1, method: "Gemini-2.5-Pro🥇", llm_size: "-", average: 62.2, recognition: 72.0, extraction: 74.0, parsing: 35.2, understanding: 90.0, reasoning: 39.7 },
+            { rank: 2, method: "Ovis2-8B🥈", llm_size: "7B", average: 56.0, recognition: 61.0, extraction: 67.7, parsing: 43.6, understanding: 82.0, reasoning: 25.6 },
+            { rank: 3, method: "Gemini1.5-Pro🥉", llm_size: "-", average: 55.5, recognition: 71.4, extraction: 63.8, parsing: 30.5, understanding: 82.0, reasoning: 29.9 },
+            { rank: 4, method: "Kimi-VL-A3B-16B", llm_size: "16B", average: 54.1, recognition: 54.0, extraction: 71.1, parsing: 32.5, understanding: 84.0, reasoning: 28.7 },
+            { rank: 5, method: "Step-1V", llm_size: "-", average: 53.4, recognition: 65.2, extraction: 64.9, parsing: 33.1, understanding: 78.0, reasoning: 25.5 },
+            { rank: 6, method: "InternVL3-14B", llm_size: "14B", average: 52.8, recognition: 62.1, extraction: 59.5, parsing: 33.2, understanding: 80.0, reasoning: 29.2 },
+            { rank: 7, method: "GLM-4v-9B", llm_size: "9B", average: 51.7, recognition: 60.6, extraction: 65.2, parsing: 32.4, understanding: 82.0, reasoning: 18.2 },
+            { rank: 8, method: "Qwen2.5-VL-7B", llm_size: "8B", average: 49.5, recognition: 24.4, extraction: 78.9, parsing: 33.1, understanding: 82.0, reasoning: 29.0 },
+            { rank: 9, method: "InternVL3-8B", llm_size: "8B", average: 49.0, recognition: 57.7, extraction: 55.8, parsing: 29.9, understanding: 72.0, reasoning: 29.4 },
+            { rank: 10, method: "Claude3.5-sonnet", llm_size: "-", average: 48.4, recognition: 34.2, extraction: 62.5, parsing: 35.2, understanding: 78.0, reasoning: 32.2 }
+        ]
+    },
+    "2025-03-23": {
+        english: [
+            { rank: 1, method: "Gemini-2.5-Pro🥇", llm_size: "-", average: 58.1, recognition: 69.5, referring: 44.1, spotting: 12.0, extraction: 92.5, parsing: 25.0, calculation: 83.1, understanding: 74.2, reasoning: 62.5 },
+            { rank: 2, method: "Gemini1.5-Pro🥈", llm_size: "-", average: 50.2, recognition: 58.0, referring: 40.1, spotting: 5.9, extraction: 88.1, parsing: 21.3, calculation: 53.2, understanding: 77.9, reasoning: 59.1 },
+            { rank: 3, method: "Llama-3.1-Nemotron-Nano-VL-8B-V1🥉", llm_size: "-", average: 49.9, recognition: 55.1, referring: 50.2, spotting: 50.1, extraction: 85.0, parsing: 8.0, calculation: 40.1, understanding: 72.1, reasoning: 38.4 },
+            { rank: 4, method: "GPT-4o", llm_size: "-", average: 46.5, recognition: 57.2, referring: 22.1, spotting: 0.0, extraction: 86.0, parsing: 22.0, calculation: 50.1, understanding: 73.0, reasoning: 61.2 },
+            { rank: 5, method: "Step-1V", llm_size: "-", average: 45.9, recognition: 55.1, referring: 26.0, spotting: 2.1, extraction: 85.2, parsing: 32.1, calculation: 41.3, understanding: 75.1, reasoning: 47.2 },
+        ],
+        chinese: [
+            { rank: 1, method: "Gemini-2.5-Pro🥇", llm_size: "-", average: 61.0, recognition: 70.0, extraction: 72.5, parsing: 34.1, understanding: 88.9, reasoning: 38.1 },
+            { rank: 2, method: "Gemini1.5-Pro🥈", llm_size: "-", average: 54.3, recognition: 70.1, extraction: 62.1, parsing: 29.0, understanding: 81.0, reasoning: 28.1 },
+            { rank: 3, method: "Ovis2-8B🥉", llm_size: "7B", average: 54.1, recognition: 59.2, extraction: 65.1, parsing: 42.1, understanding: 80.0, reasoning: 24.1 },
+            { rank: 4, method: "Step-1V", llm_size: "-", average: 52.9, recognition: 64.1, extraction: 63.2, parsing: 32.0, understanding: 77.0, reasoning: 24.9 },
+            { rank: 5, method: "Kimi-VL-A3B-16B", llm_size: "16B", average: 52.5, recognition: 52.1, extraction: 69.0, parsing: 31.0, understanding: 82.1, reasoning: 27.2 },
+        ]
+    }
+};
+
+/**
+ * 重新计算并应用第四列的高亮模糊效果
+ * 这是从您原有脚本中提取并封装的逻辑
+ */
+function recalculateHighlightEffect() {
+    document.querySelectorAll('table').forEach(table => {
+        const avgCell = table.querySelector('tr:first-child th:nth-child(4), tr:first-child td:nth-child(4)');
+        if (!avgCell) return;
         
-        </tbody>
-      </table>
+        const tableRect = table.getBoundingClientRect();
+        const cellRect  = avgCell.getBoundingClientRect();
+        
+        const left  = cellRect.left - tableRect.left;
+        const width = cellRect.width;
+        
+        table.style.setProperty('--avg-left',  `${left}px`);
+        table.style.setProperty('--avg-width', `${width}px`);
+    });
+}
 
-      <p class="table-title">Performance of LMMs on Chinese tasks</p>
-      <table>
-        <thead>
-          <tr>
-            <td>Rank</td>
-            <td>Method</td>
-            <td>LLM Size</td>
-            <td class="highlight-average">Average</td>
-            <td>Recognition</td>
-            <td>Extraction</td>
-            <td>Parsing</td>
-            <td>Understanding</td>
-            <td>Reasoning</td>
-            
-          </tr>
-        </thead>
-        <tbody>
 
-          <tr>
-            <td>1</td>
-            <td>Gemini-2.5-Pro🥇</td>
-            <td>-</td>
-            <td class="highlight-average">62.2</td>
-            <td>72.0</td>
-            <td>74.0</td>
-            <td>35.2</td>
-            <td>90.0</td>
-            <td>39.7</td>
-            
-          </tr>
-          
-          <tr>
-            <td>2</td>
-            <td>Ovis2-8B🥈</td>
-            <td>7B</td>
-            <td class="highlight-average">56.0</td>
-            <td>61.0</td>
-            <td>67.7</td>
-            <td>43.6</td>
-            <td>82.0</td>
-            <td>25.6</td>
-            
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Gemini1.5-Pro🥉</td>
-            <td>-</td>
-            <td class="highlight-average">55.5</td>
-            <td>71.4</td>
-            <td>63.8</td>
-            <td>30.5</td>
-            <td>82.0</td>
-            <td>29.9</td>
-            
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Kimi-VL-A3B-16B</td>
-            <td>16B</td>
-            <td class="highlight-average">54.1</td>
-            <td>54.0</td>
-            <td>71.1</td>
-            <td>32.5</td>
-            <td>84.0</td>
-            <td>28.7</td>
-            
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Step-1V</td>
-            <td>-</td>
-            <td class="highlight-average">53.4</td>
-            <td>65.2</td>
-            <td>64.9</td>
-            <td>33.1</td>
-            <td>78.0</td>
-            <td>25.5</td>
-            
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>InternVL3-14B</td>
-            <td>14B</td>
-            <td class="highlight-average">52.8</td>
-            <td>62.1</td>
-            <td>59.5</td>
-            <td>33.2</td>
-            <td>80.0</td>
-            <td>29.2</td>
-            
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>GLM-4v-9B</td>
-            <td>9B</td>
-            <td class="highlight-average">51.7</td>
-            <td>60.6</td>
-            <td>65.2</td>
-            <td>32.4</td>
-            <td>82.0</td>
-            <td>18.2</td>
-            
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>Qwen2.5-VL-7B</td>
-            <td>8B</td>
-            <td class="highlight-average">49.5</td>
-            <td>24.4</td>
-            <td>78.9</td>
-            <td>33.1</td>
-            <td>82.0</td>
-            <td>29.0</td>
-            
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>InternVL3-8B</td>
-            <td>8B</td>
-            <td class="highlight-average">49.0</td>
-            <td>57.7</td>
-            <td>55.8</td>
-            <td>29.9</td>
-            <td>72.0</td>
-            <td>29.4</td>
-            
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>Claude3.5-sonnet</td>
-            <td>-</td>
-            <td class="highlight-average">48.4</td>
-            <td>34.2</td>
-            <td>62.5</td>
-            <td>35.2</td>
-            <td>78.0</td>
-            <td>32.2</td>
-            
-          </tr>
+/**
+ * 根据所选日期更新两个排行榜
+ */
+function updateLeaderboards() {
+    const selectedDate = document.getElementById('date-selector').value;
+    const data = leaderboardData[selectedDate];
 
-       </tbody>
-      </table>
+    const englishTbody = document.getElementById('english-leaderboard-tbody');
+    const chineseTbody = document.getElementById('chinese-leaderboard-tbody');
 
-      <br> 
+    // 清空现有表格内容
+    englishTbody.innerHTML = '';
+    chineseTbody.innerHTML = '';
 
-      <style>
-        .info-box {
-          background-color: #f5f9fc; /* 更加接近白色的蓝灰色 */
-          border-left: 3px solid #aacbe3; /* 柔和一点的蓝色边框 */
-          padding: 0.3em 1em; /* 更小的上下间距 */
-          margin-bottom: 0.8em;
-          border-radius: 4px;
-          font-family: Arial, sans-serif;
-          text-align: left; /* 明确左对齐 */
-          color: #333; /* 更柔和的深灰色文本 */
-          font-size: 14px;
-          line-height: 1.5;
-        }
-      
-        .info-title {
-          font-weight: bold;
-          margin-bottom: 0.3em;
-        }
-      </style>
-      
-      <div class="info-box">
-        <p>We aim to update this benchmark every quarter. We sincerely welcome community contributions. If you have open-source models on Hugging Face or accessible APIs, sharing them with us would greatly help improve and expand the leaderboard. You can contact us at: ling_fu@hust.edu.cn</p>
-      </div>
-      
-      <div class="info-box">
-        <p>We have observed that some methods adopt absolute encoding for prompt inputs when tackling specialized tasks. For example, Qwen2.5VL uses a format like {"bbox_2d": [x1, y1, x2, y2], "text_content": "xxx"} for text spotting. After modifying the prompt accordingly, Qwen2.5VL-7B achieved a text spotting score of 51.6 on public data, showing a significant improvement compared to the default prompt currently used in OCRBench v2. We encourage you to share the evaluation results using prompts adapted to your model's input format. This will help us further improve and refine the leaderboard.</p>
-      </div>
-      
-    </div>
-  </div>
-</section>
+    // 填充英文榜单
+    if (data.english) {
+        data.english.forEach(model => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${model.rank}</td>
+                <td>${model.method}</td>
+                <td>${model.llm_size}</td>
+                <td class="highlight-average">${model.average}</td>
+                <td>${model.recognition}</td>
+                <td>${model.referring}</td>
+                <td>${model.spotting}</td>
+                <td>${model.extraction}</td>
+                <td>${model.parsing}</td>
+                <td>${model.calculation}</td>
+                <td>${model.understanding}</td>
+                <td>${model.reasoning}</td>
+            `;
+            englishTbody.appendChild(row);
+        });
+    }
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h2 class="subtitle is-3 publication-subtitle">
-           OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning 
-          </h2>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-             Ling Fu</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Zhebin Kuang</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Jiajun Song</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Mingxin Huang</a><sup>2</sup>,</span>
-            <span class="author-block">
-             Biao Yang</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Yuzhe Li</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Linghao Zhu</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Qidi Luo</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Xinyu Wang</a><sup>3</sup>,</span>
-            <span class="author-block">
-             Hao Lu</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Zhang Li</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Guozhi Tang</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Bin Shan</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Chunhui Lin</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Qi Liu</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Binghong Wu</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Hao Feng</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Hao Liu</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Can Huang</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Jingqun Tang</a><sup>4</sup>,</span>
-            <span class="author-block">
-             Wei Chen</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Lianwen Jin</a><sup>2</sup>,</span>
-            <span class="author-block">
-             Yuliang Liu</a><sup>1</sup>,</span>
-            <span class="author-block">
-             Xiang Bai</a><sup>1</sup></span>
-          </div>
-          <br>
-          
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Huazhong University of Science and Technology,</span>
-            <span class="author-block"><sup>2</sup>South China University of Technology,</span>
-            <span class="author-block"><sup>3</sup>University of Adelaide,</span>            
-            <span class="author-block"><sup>4</sup>ByteDance</span>
-          </div>
-           <br>
-  
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    // 填充中文榜单
+    if (data.chinese) {
+        data.chinese.forEach(model => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${model.rank}</td>
+                <td>${model.method}</td>
+                <td>${model.llm_size}</td>
+                <td class="highlight-average">${model.average}</td>
+                <td>${model.recognition}</td>
+                <td>${model.extraction}</td>
+                <td>${model.parsing}</td>
+                <td>${model.understanding}</td>
+                <td>${model.reasoning}</td>
+            `;
+            chineseTbody.appendChild(row);
+        });
+    }
 
-  
+    // 关键步骤：在表格内容更新后，重新计算高亮效果
+    recalculateHighlightEffect();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 页面加载时，立即根据默认日期填充一次榜单
+    updateLeaderboards();
+
+    // 为日期选择器添加事件监听器
+    const dateSelector = document.getElementById('date-selector');
+    dateSelector.addEventListener('change', updateLeaderboards);
+
+    // 监听窗口大小变化，以自适应高亮效果 (这是您原有的逻辑)
+    window.addEventListener('resize', recalculateHighlightEffect);
+});
+
+// 这是您原有的高亮计算逻辑，现在已经被新的 `recalculateHighlightEffect` 函数和事件监听器替代
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    // ... 原有逻辑 ...
+});
+window.addEventListener('resize', () => {
+    // ... 原有逻辑 ...
+});
+*/
+</script>
+
 <section class="hero teaser">
-  <div class="container is-max-desktop">
-        <div class="content has-text-centered">
-          <img src="./static/images/overview.jpg" alt="overview examples" />
-          <p>Scoring the Optical Character Recognition (OCR) capabilities of Large Multimodal Models (LMMs) has witnessed growing interest. Existing benchmarks have highlighted the impressive performance of LMMs in text recognition; however, their abilities in certain challenging tasks, such as text localization, handwritten content extraction, and logical reasoning, remain underexplored. To bridge this gap, we introduce OCRBench v2, a large-scale bilingual text-centric benchmark with currently the most comprehensive set of tasks (4X more tasks than the previous multi-scene benchmark OCRBench), the widest coverage of scenarios (31 diverse scenarios), and thorough evaluation metrics, with 10,000 human-verified question-answering pairs and a high proportion of difficult samples. Moreover, we construct a private test set with 1,500 manually annotated images. The consistent evaluation trends observed across both public and private test sets validate the OCRBench v2's reliability. After carefully benchmarking state-of-the-art LMMs, we find that most LMMs score below 50 (100 in total) and suffer from five-type limitations, including less frequently encountered text recognition, fine-grained perception, layout perception, complex element parsing, and logical reasoning.</p>
-    </div>
-  
+  <div class="container is-max-desktop">
+        <div class="content has-text-centered">
+          <img src="./static/images/overview.jpg" alt="overview examples" />
+          <p>Scoring the Optical Character Recognition (OCR) capabilities of Large Multimodal Models (LMMs) has witnessed growing interest. Existing benchmarks have highlighted the impressive performance of LMMs in text recognition; however, their abilities in certain challenging tasks, such as text localization, handwritten content extraction, and logical reasoning, remain underexplored. To bridge this gap, we introduce OCRBench v2, a large-scale bilingual text-centric benchmark with currently the most comprehensive set of tasks (4X more tasks than the previous multi-scene benchmark OCRBench), the widest coverage of scenarios (31 diverse scenarios), and thorough evaluation metrics, with 10,000 human-verified question-answering pairs and a high proportion of difficult samples. Moreover, we construct a private test set with 1,500 manually annotated images. The consistent evaluation trends observed across both public and private test sets validate the OCRBench v2's reliability. After carefully benchmarking state-of-the-art LMMs, we find that most LMMs score below 50 (100 in total) and suffer from five-type limitations, including less frequently encountered text recognition, fine-grained perception, layout perception, complex element parsing, and logical reasoning.</p>
+    </div>
 </section>
 
 
 <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code></code>@misc{fu2024ocrbenchv2improvedbenchmark,
-    title={OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning}, 
-    author={Ling Fu and Zhebin Kuang and Jiajun Song and Mingxin Huang and Biao Yang and Yuzhe Li and Linghao Zhu and Qidi Luo and Xinyu Wang and Hao Lu and Zhang Li and Guozhi Tang and Bin Shan and Chunhui Lin and Qi Liu and Binghong Wu and Hao Feng and Hao Liu and Can Huang and Jingqun Tang and Wei Chen and Lianwen Jin and Yuliang Liu and Xiang Bai},
-    year={2024},
-    eprint={2501.00321},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV},
-    url={https://arxiv.org/abs/2501.00321}, 
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code></code>@misc{fu2024ocrbenchv2improvedbenchmark,
+    title={OCRBench v2: An Improved Benchmark for Evaluating Large Multimodal Models on Visual Text Localization and Reasoning}, 
+    author={Ling Fu and Zhebin Kuang and Jiajun Song and Mingxin Huang and Biao Yang and Yuzhe Li and Linghao Zhu and Qidi Luo and Xinyu Wang and Hao Lu and Zhang Li and Guozhi Tang and Bin Shan and Chunhui Lin and Qi Liu and Binghong Wu and Hao Feng and Hao Liu and Can Huang and Jingqun Tang and Wei Chen and Lianwen Jin and Yuliang Liu and Xiang Bai},
+    year={2024},
+    eprint={2501.00321},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2501.00321}, 
 }</code></pre>
-  </div>
+  </div>
 </section>
 
 
 <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="https://arxiv.org/abs/2501.00321">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/Yuliang-Liu/MultimodalOCR" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is website adapted from <a href="https://nerfies.github.io/">Nerfies</a> , licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-          Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://arxiv.org/abs/2501.00321">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Yuliang-Liu/MultimodalOCR" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is website adapted from <a href="https://nerfies.github.io/">Nerfies</a> , licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
 
 </body>
