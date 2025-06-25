@@ -201,8 +201,8 @@
       border-collapse: collapse;
     }
     
-    table td:nth-child(5),
-    table th:nth-child(5) {
+    table td:nth-child(6),
+    table th:nth-child(6) {
       position: relative;
       z-index: 2; 
       font-weight: 700;
@@ -211,13 +211,13 @@
     }
     
     /* 行斑马纹对第 4 列失效 */
-    table tr:nth-child(even) td:nth-child(5){
+    table tr:nth-child(even) td:nth-child(6){
       background: rgba(240,248,255,.60);
     }
     
     /* 第一/最后一行圆角 */
-    table tr:first-child  td:nth-child(5){border-top-left-radius:12px;border-top-right-radius:12px}
-    table tr:last-child   td:nth-child(5){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+    table tr:first-child  td:nth-child(6){border-top-left-radius:12px;border-top-right-radius:12px}
+    table tr:last-child   td:nth-child(6){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
     
     /* ---------- 连贯虚化伪元素 ---------- */
     table::after{
@@ -283,7 +283,7 @@
     /* 对页面里每张表执行一次定位计算 */
     document.querySelectorAll('table').forEach(table => {
       /* 取表头 or 第一行里的第 4 个单元格 */
-      const avgCell = table.querySelector('tr:first-child th:nth-child(5), tr:first-child td:nth-child(5)');
+      const avgCell = table.querySelector('tr:first-child th:nth-child(6), tr:first-child td:nth-child(6)');
       if (!avgCell) return;                       /* 没找到就跳过 */
   
       /* 表格 & 单元格相对视窗的矩形 */
@@ -303,7 +303,7 @@
   /* 如果页面以后有窗口大小变化，附带自适应（可选） */
   window.addEventListener('resize', () => {
     document.querySelectorAll('table').forEach(table => {
-      const avgCell = table.querySelector('tr:first-child th:nth-child(5), tr:first-child td:nth-child(5)');
+      const avgCell = table.querySelector('tr:first-child th:nth-child(6), tr:first-child td:nth-child(6)');
       if (!avgCell) return;
       const tableRect = table.getBoundingClientRect();
       const cellRect  = avgCell.getBoundingClientRect();
@@ -394,7 +394,6 @@
             <td>Arxiv 2024</td>
             <td>Yes</td>
             <td>No</td>
-            <td>-</td>
             <td class="highlight-average">51.6</td>
             <td>59.1</td>
             <td>41.2</td>
