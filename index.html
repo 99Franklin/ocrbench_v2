@@ -3503,29 +3503,18 @@
 </footer>
 
 <script>
-  function showLeaderboard(period) {
-    // 1. 隐藏所有的榜单容器
-    const containers = document.querySelectorAll('.leaderboard-container');
-    containers.forEach(container => {
-      container.style.display = 'none';
-    });
-
-    // 2. 显示被点击按钮对应的榜单容器
-    const activeContainer = document.getElementById('leaderboard-' + period);
-    if (activeContainer) {
-      activeContainer.style.display = 'block';
+function switchPeriod(period) {
+    // 隐藏所有表格
+    document.getElementById('leaderboard-2025-09').style.display = 'none';
+    document.getElementById('leaderboard-2025-06').style.display = 'none';
+    
+    // 显示选中的表格
+    if (period === '2025.09') {
+        document.getElementById('leaderboard-2025-09').style.display = 'block';
+    } else if (period === '2025.06') {
+        document.getElementById('leaderboard-2025-06').style.display = 'block';
     }
-
-    // 3. 更新按钮的激活状态
-    const buttons = document.querySelectorAll('.period-selector button');
-    buttons.forEach(button => {
-      button.classList.remove('active');
-    });
-    const activeButton = document.getElementById('btn-' + period);
-    if (activeButton) {
-      activeButton.classList.add('active');
-    }
-  }
+}
 </script>
 </body>
 </html>
