@@ -41,6 +41,33 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <style>
+    .period-selector {
+      margin-bottom: 20px;
+      font-family: sans-serif;
+    }
+    .period-selector span {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .period-selector button {
+      padding: 8px 16px;
+      border: 1px solid #ccc;
+      background-color: #f0f0f0;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 0 5px;
+    }
+    .period-selector button:hover {
+      background-color: #e0e0e0;
+    }
+    .period-selector button.active {
+      background-color: #007bff;
+      color: white;
+      border-color: #007bff;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
@@ -324,16 +351,15 @@
 
     <!-- 添加时期选择器 -->
     <div class="period-selector">
-      <label for="periodSelect">Select Period:</label>
-      <select id="periodSelect">
-        <option value="2025-01">2025.06 (Current)</option>
-        <option value="2025-06">2025.09 (Coming Soon)</option>
-      </select>
+      <span>Select Period:</span>
+      <button id="btn-2025-09" onclick="showLeaderboard('2025-09')" class="active">2025.09</button>
+      <button id="btn-2025-06" onclick="showLeaderboard('2025-06')">2025.06</button>
     </div>
 
     
-    <div class="period-section active" data-period="2025-06">
-      <p class="table-title">Performance of LMMs on English tasks</p>
+   <div id="leaderboard-2025-09" class="leaderboard-container">
+      <!-- 将英文和中文两个表格完整复制到这里 -->
+      <h2>Performance of LMMs on English tasks</h2>
       <table>
         <thead>
           <tr>
@@ -1139,8 +1165,1512 @@
         </tbody>
       </table>
 
-    <div class="period-section active" data-period="2025-06">
-      <p class="table-title">Performance of LMMs on Chinese tasks</p>
+      <h2>Performance of LMMs on Chinese tasks</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Venue</td>
+            <td>Open-source</td> <!-- 新增列 -->
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>1</td>
+            <td>Gemini-2.5-Pro🥇</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">62.2</td>
+            <td>72.0</td>
+            <td>74.0</td>
+            <td>35.2</td>
+            <td>90.0</td>
+            <td>39.7</td>
+            
+          </tr>
+          
+          <tr>
+            <td>2</td>
+            <td>Ovis2-8B🥈</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">56.0</td>
+            <td>61.0</td>
+            <td>67.7</td>
+            <td>43.6</td>
+            <td>82.0</td>
+            <td>25.6</td>
+            
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Gemini1.5-Pro🥉</td>
+            <td>Arxiv 2024</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">55.5</td>
+            <td>71.4</td>
+            <td>63.8</td>
+            <td>30.5</td>
+            <td>82.0</td>
+            <td>29.9</td>
+            
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Kimi-VL-A3B-16B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>16B</td>
+            <td class="highlight-average">54.1</td>
+            <td>54.0</td>
+            <td>71.1</td>
+            <td>32.5</td>
+            <td>84.0</td>
+            <td>28.7</td>
+            
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Step-1V</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">53.4</td>
+            <td>65.2</td>
+            <td>64.9</td>
+            <td>33.1</td>
+            <td>78.0</td>
+            <td>25.5</td>
+            
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>InternVL3-14B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>14B</td>
+            <td class="highlight-average">52.8</td>
+            <td>62.1</td>
+            <td>59.5</td>
+            <td>33.2</td>
+            <td>80.0</td>
+            <td>29.2</td>
+            
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>GLM-4v-9B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>9B</td>
+            <td class="highlight-average">51.7</td>
+            <td>60.6</td>
+            <td>65.2</td>
+            <td>32.4</td>
+            <td>82.0</td>
+            <td>18.2</td>
+            
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Qwen2.5-VL-7B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">49.5</td>
+            <td>24.4</td>
+            <td>78.9</td>
+            <td>33.1</td>
+            <td>82.0</td>
+            <td>29.0</td>
+            
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>InternVL3-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">49.0</td>
+            <td>57.7</td>
+            <td>55.8</td>
+            <td>29.9</td>
+            <td>72.0</td>
+            <td>29.4</td>
+            
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Claude3.5-sonnet</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">48.4</td>
+            <td>34.2</td>
+            <td>62.5</td>
+            <td>35.2</td>
+            <td>78.0</td>
+            <td>32.2</td>
+          </tr>
+
+          <tr>
+            <td>11</td>
+            <td>DeepSeek-VL2-Small</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>16B</td>
+            <td class="highlight-average">48.1</td>
+            <td>51.6</td>
+            <td>56.3</td>
+            <td>27.8</td>
+            <td>79.6</td>
+            <td>25.3</td>
+          </tr>
+
+          <tr>
+            <td>12</td>
+            <td>MiniCPM-V-2.6</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">47.7</td>
+            <td>53.1</td>
+            <td>53.2</td>
+            <td>32.8</td>
+            <td>76.0</td>
+            <td>23.4</td>
+          </tr>
+
+          <tr>
+            <td>13</td>
+            <td>MiniCPM-o-2.6</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">47.7</td>
+            <td>54.0</td>
+            <td>62.4</td>
+            <td>24.1</td>
+            <td>68.0</td>
+            <td>29.8</td>
+          </tr>
+
+          <tr>
+            <td>14</td>
+            <td>GPT-4o</td>
+            <td>Arxiv 2024</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">45.7</td>
+            <td>41.7</td>
+            <td>52.1</td>
+            <td>29.0</td>
+            <td>76.0</td>
+            <td>29.4</td>
+          </tr>
+
+          <tr>
+            <td>15</td>
+            <td>Qwen2-Vl-7B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">44.7</td>
+            <td>23.7</td>
+            <td>63.5</td>
+            <td>27.9</td>
+            <td>80.0</td>
+            <td>28.5</td>
+          </tr>
+
+          <tr>
+            <td>16</td>
+            <td>InternVL2.5-8B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">42.8</td>
+            <td>42.8</td>
+            <td>47.9</td>
+            <td>27.3</td>
+            <td>80.0</td>
+            <td>23.5</td>
+          </tr>
+
+          <tr>
+            <td>17</td>
+            <td>SAIL-VL-1.6-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">42.6</td>
+            <td>35.8</td>
+            <td>41.5</td>
+            <td>35.7</td>
+            <td>76.0</td>
+            <td>23.9</td>
+          </tr>
+
+          <tr>
+            <td>18</td>
+            <td>InternVL2.5-26B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>20B</td>
+            <td class="highlight-average">41.9</td>
+            <td>40.2</td>
+            <td>42.7</td>
+            <td>25.6</td>
+            <td>74.0</td>
+            <td>27.0</td>
+          </tr>
+
+          <tr>
+            <td>19</td>
+            <td>InternVL2-8B</td>
+            <td>SCIS 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">41.3</td>
+            <td>35.2</td>
+            <td>42.8</td>
+            <td>26.1</td>
+            <td>78.0</td>
+            <td>24.4</td>
+          </tr>
+
+          <tr>
+            <td>20</td>
+            <td>Llama-3.1-Nemotron-Nano-VL-8B-V1</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">40.1</td>
+            <td>38.2</td>
+            <td>54.9</td>
+            <td>26.6</td>
+            <td>66.0</td>
+            <td>14.8</td>
+          </tr>
+
+          <tr>
+            <td>21</td>
+            <td>InternVL2-26B</td>
+            <td>SCIS 2024</td>
+            <td>Yes</td>
+            <td>20B</td>
+            <td class="highlight-average">38.1</td>
+            <td>20.4</td>
+            <td>50.7</td>
+            <td>29.0</td>
+            <td>76.0</td>
+            <td>14.5</td>
+          </tr>
+
+          <tr>
+            <td>22</td>
+            <td>GPT-4o-mini</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">37.4</td>
+            <td>20.0</td>
+            <td>53.6</td>
+            <td>27.9</td>
+            <td>66.0</td>
+            <td>19.6</td>
+          </tr>
+
+          <tr>
+            <td>23</td>
+            <td>Phi-4-MultiModal</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>5.6B</td>
+            <td class="highlight-average">37.3</td>
+            <td>30.5</td>
+            <td>40.5</td>
+            <td>42.7</td>
+            <td>56.0</td>
+            <td>16.9</td>
+          </tr>
+
+          <tr>
+            <td>24</td>
+            <td>XComposer2-4KHD</td>
+            <td>NIPS 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">32.4</td>
+            <td>12.9</td>
+            <td>38.6</td>
+            <td>37.5</td>
+            <td>60.0</td>
+            <td>13.1</td>
+          </tr>
+
+          <tr>
+            <td>25</td>
+            <td>Ovis1.6-3B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>3B</td>
+            <td class="highlight-average">31.7</td>
+            <td>22.5</td>
+            <td>33.3</td>
+            <td>31.5</td>
+            <td>54.0</td>
+            <td>17.0</td>
+          </tr>
+
+          <tr>
+            <td>26</td>
+            <td>Monkey</td>
+            <td>CVPR 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">21.5</td>
+            <td>1.5</td>
+            <td>28.4</td>
+            <td>29.1</td>
+            <td>40.0</td>
+            <td>8.3</td>
+          </tr>
+
+          <tr>
+            <td>27</td>
+            <td>TextMonkey</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">21.5</td>
+            <td>10.5</td>
+            <td>15.2</td>
+            <td>30.2</td>
+            <td>44.0</td>
+            <td>7.6</td>
+          </tr>
+
+          <tr>
+            <td>28</td>
+            <td>Cambrian-1-8B</td>
+            <td>NIPS 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">18.5</td>
+            <td>2.4</td>
+            <td>19.8</td>
+            <td>26.7</td>
+            <td>36.0</td>
+            <td>7.6</td>
+          </tr>
+
+          <tr>
+            <td>29</td>
+            <td>LLaVA-OV-7B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">17.4</td>
+            <td>5.4</td>
+            <td>13.6</td>
+            <td>20.3</td>
+            <td>34.0</td>
+            <td>13.6</td>
+          </tr>
+
+          <tr>
+            <td>30</td>
+            <td>mPLUG-Owl3</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">16.5</td>
+            <td>1.6</td>
+            <td>27.4</td>
+            <td>27.3</td>
+            <td>16.0</td>
+            <td>10.0</td>
+          </tr>
+
+          <tr>
+            <td>31</td>
+            <td>Pixtral-12B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>12B</td>
+            <td class="highlight-average">16.0</td>
+            <td>6.2</td>
+            <td>22.3</td>
+            <td>11.4</td>
+            <td>26.0</td>
+            <td>14.0</td>
+          </tr>
+
+          <tr>
+            <td>32</td>
+            <td>Qwen-VL-chat</td>
+            <td>Arxiv 2023</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">16.5</td>
+            <td>9.1</td>
+            <td>3.6</td>
+            <td>18.9</td>
+            <td>44.0</td>
+            <td>7.1</td>
+          </tr>
+
+          <tr>
+            <td>33</td>
+            <td>Idefics3-8B</td>
+            <td>NeurIPS 2024 Workshop</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">15.6</td>
+            <td>2.9</td>
+            <td>29.0</td>
+            <td>12.3</td>
+            <td>26.0</td>
+            <td>7.9</td>
+          </tr>
+
+          <tr>
+            <td>34</td>
+            <td>Qwen-VL</td>
+            <td>Arxiv 2023</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">15.6</td>
+            <td>4.3</td>
+            <td>0</td>
+            <td>30.6</td>
+            <td>38.0</td>
+            <td>5.1</td>
+          </tr>
+
+          <tr>
+            <td>35</td>
+            <td>Molmo-7B</td>
+            <td>CVPR 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">15.0</td>
+            <td>3.4</td>
+            <td>29.8</td>
+            <td>6.6</td>
+            <td>24.0</td>
+            <td>11.1</td>
+          </tr>
+
+          <tr>
+            <td>36</td>
+            <td>DocOwl2</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">14.4</td>
+            <td>1.0</td>
+            <td>17.8</td>
+            <td>29.4</td>
+            <td>20.0</td>
+            <td>3.9</td>
+          </tr>
+
+          <tr>
+            <td>37</td>
+            <td>Deepseek-VL-7B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">13.7</td>
+            <td>3.2</td>
+            <td>14.7</td>
+            <td>10.7</td>
+            <td>30.0</td>
+            <td>9.8</td>
+          </tr>
+
+          <tr>
+            <td>38</td>
+            <td>CogVLM-chat</td>
+            <td>NIPS 2024</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">12.8</td>
+            <td>2.4</td>
+            <td>16.2</td>
+            <td>22.5</td>
+            <td>20.0</td>
+            <td>3.1</td>
+          </tr>
+
+          <tr>
+            <td>39</td>
+            <td>Eagle-X5-7B</td>
+            <td>ICLR 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">12.3</td>
+            <td>1.9</td>
+            <td>16.1</td>
+            <td>13.6</td>
+            <td>22.0</td>
+            <td>8.1</td>
+          </tr>
+
+          <tr>
+            <td>40</td>
+            <td>VILA1.5-8B</td>
+            <td>CVPR 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">11.0</td>
+            <td>1.4</td>
+            <td>9.1</td>
+            <td>22.2</td>
+            <td>16.0</td>
+            <td>6.4</td>
+          </tr>
+
+          <tr>
+            <td>41</td>
+            <td>Yi-VL-6B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>6B</td>
+            <td class="highlight-average">10.4</td>
+            <td>1.6</td>
+            <td>6.4</td>
+            <td>28.8</td>
+            <td>10.0</td>
+            <td>5.3</td>
+          </tr>
+          
+          <tr>
+            <td>42</td>
+            <td>LLaVA-Next-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">9.2</td>
+            <td>2.8</td>
+            <td>0.9</td>
+            <td>14.9</td>
+            <td>20.0</td>
+            <td>7.4</td>
+          </tr>
+
+          <tr>
+            <td>43</td>
+            <td>UReader</td>
+            <td>EMNLP finding 2023</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">9.0</td>
+            <td>0.3</td>
+            <td>2.0</td>
+            <td>28.1</td>
+            <td>12.0</td>
+            <td>2.4</td>
+          </tr>
+
+          <tr>
+            <td>44</td>
+            <td>LLaVAR</td>
+            <td>Arxiv 2023</td>
+            <td>Yes</td>
+            <td>13B</td>
+            <td class="highlight-average">8.6</td>
+            <td>2.2</td>
+            <td>2.0</td>
+            <td>27.1</td>
+            <td>10.0</td>
+            <td>1.9</td>
+          </tr>
+
+          <tr>
+            <td>45</td>
+            <td>EMU2-chat</td>
+            <td>CVPR 2024</td>
+            <td>Yes</td>
+            <td>37B</td>
+            <td class="highlight-average">8.2</td>
+            <td>1.2</td>
+            <td>3.0</td>
+            <td>29.3</td>
+            <td>4.0</td>
+            <td>3.6</td>
+          </tr>
+
+          <tr>
+            <td>46</td>
+            <td>Janus-1.3B</td>
+            <td>CVPR 2025</td>
+            <td>Yes</td>
+            <td>1.3B</td>
+            <td class="highlight-average">7.5</td>
+            <td>4.1</td>
+            <td>2.2</td>
+            <td>10.4</td>
+            <td>14.0</td>
+            <td>6.7</td>
+          </tr>          
+
+       </tbody>
+      </table>
+
+      <br> 
+
+      <style>
+        .info-box {
+          background-color: #f5f9fc; /* 更加接近白色的蓝灰色 */
+          border-left: 3px solid #aacbe3; /* 柔和一点的蓝色边框 */
+          padding: 0.3em 1em; /* 更小的上下间距 */
+          margin-bottom: 0.8em;
+          border-radius: 4px;
+          font-family: Arial, sans-serif;
+          text-align: left; /* 明确左对齐 */
+          color: #333; /* 更柔和的深灰色文本 */
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      
+        .info-title {
+          font-weight: bold;
+          margin-bottom: 0.3em;
+        }
+      </style>
+      
+      <div class="info-box">
+        <p>We aim to update this benchmark every quarter. We sincerely welcome community contributions. If you have open-source models on Hugging Face or accessible APIs, sharing them with us would greatly help improve and expand the leaderboard. You can contact us at: ling_fu@hust.edu.cn</p>
+      </div>
+      
+      <div class="info-box">
+        <p>We have observed that some methods adopt absolute encoding for prompt inputs when tackling specialized tasks. For example, Qwen2.5VL uses a format like {"bbox_2d": [x1, y1, x2, y2], "text_content": "xxx"} for text spotting. After modifying the prompt accordingly, Qwen2.5VL-7B achieved a text spotting score of 51.6 on public data, showing a significant improvement compared to the default prompt currently used in OCRBench v2. We encourage you to share the evaluation results using prompts adapted to your model's input format. This will help us further improve and refine the leaderboard.</p>
+      </div>
+
+   <div id="leaderboard-2025-06" class="leaderboard-container" style="display: none;">
+      <!-- 将英文和中文两个表格完整复制到这里 -->
+      <h2>Performance of LMMs on English tasks</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Venue</td>
+            <td>Open-source</td> <!-- 新增列 -->
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Gemini-2.5-Pro🥇</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">59.3</td>
+            <td>70.9</td>
+            <td>45.8</td>
+            <td>13.4</td>
+            <td>93.7</td>
+            <td>26.9</td>
+            <td>84.6</td>
+            <td>75.8</td>
+            <td>63.0</td>
+            
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Llama-3.1-Nemotron-Nano-VL-8B-V1🥈</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">56.4</td>
+            <td>62.9</td>
+            <td>61.3</td>
+            <td>68.6</td>
+            <td>88.2</td>
+            <td>10.0</td>
+            <td>44.1</td>
+            <td>75.3</td>
+            <td>41.0</td>
+            
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Gemini1.5-Pro🥉</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td class="highlight-average">51.6</td>
+            <td>59.1</td>
+            <td>41.2</td>
+            <td>6.6</td>
+            <td>89.5</td>
+            <td>22.4</td>
+            <td>54.7</td>
+            <td>78.8</td>
+            <td>60.3</td>
+            
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>GPT-4o</td>
+            <td>Arxiv 2024</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">47.6</td>
+            <td>58.6</td>
+            <td>23.4</td>
+            <td>0.0</td>
+            <td>87.4</td>
+            <td>23.1</td>
+            <td>51.6</td>
+            <td>74.4</td>
+            <td>62.3</td>
+            
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Claude3.5-sonnet</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">47.5</td>
+            <td>52.9</td>
+            <td>24.9</td>
+            <td>2.5</td>
+            <td>86.9</td>
+            <td>23.8</td>
+            <td>61.4</td>
+            <td>74.4</td>
+            <td>53.0</td>
+            
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Step-1V</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">46.8</td>
+            <td>56.7</td>
+            <td>27.4</td>
+            <td>2.6</td>
+            <td>86.3</td>
+            <td>33.3</td>
+            <td>42.6</td>
+            <td>76.6</td>
+            <td>48.7</td>
+            
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>InternVL3-14B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>14B</td>
+            <td class="highlight-average">46.8</td>
+            <td>55.8</td>
+            <td>24.5</td>
+            <td>2.1</td>
+            <td>89.3</td>
+            <td>21.0</td>
+            <td>59.5</td>
+            <td>72.0</td>
+            <td>50.0</td>
+            
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Ovis2-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">46.1</td>
+            <td>54.2</td>
+            <td>20.9</td>
+            <td>0.0</td>
+            <td>83.6</td>
+            <td>24.2</td>
+            <td>54.7</td>
+            <td>74.1</td>
+            <td>57.3</td>
+            
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>InternVL3-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">45.3</td>
+            <td>49.7</td>
+            <td>22.3</td>
+            <td>0.2</td>
+            <td>86.8</td>
+            <td>22.4</td>
+            <td>57.0</td>
+            <td>70.7</td>
+            <td>53.0</td>
+            
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>GPT-4o-mini</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">44.1</td>
+            <td>55.3</td>
+            <td>21.8</td>
+            <td>0.0</td>
+            <td>85.4</td>
+            <td>20.6</td>
+            <td>45.2</td>
+            <td>75.5</td>
+            <td>49.0</td>
+          </tr>
+
+          <tr>
+            <td>11</td>
+            <td>SAIL-VL-1.6-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">43.1</td>
+            <td>56.7</td>
+            <td>24.1</td>
+            <td>2.2</td>
+            <td>79.3</td>
+            <td>22.8</td>
+            <td>45.4</td>
+            <td>69.2</td>
+            <td>45.3</td>
+          </tr>
+
+          <tr>
+            <td>12</td>
+            <td>InternVL2.5-26B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>20B</td>
+            <td class="highlight-average">42.6</td>
+            <td>53.5</td>
+            <td>21.4</td>
+            <td>0</td>
+            <td>84.0</td>
+            <td>21.4</td>
+            <td>51.5</td>
+            <td>67.5</td>
+            <td>41.5</td>
+          </tr>
+
+          <tr>
+            <td>13</td>
+            <td>Qwen2-Vl-7B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">42.3</td>
+            <td>47.0</td>
+            <td>42.0</td>
+            <td>1.5</td>
+            <td>90.2</td>
+            <td>13.7</td>
+            <td>36.4</td>
+            <td>71.1</td>
+            <td>36.6</td>
+          </tr>
+
+          <tr>
+            <td>14</td>
+            <td>Qwen2.5-VL-7B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">41.8</td>
+            <td>51.5</td>
+            <td>24.5</td>
+            <td>3.1</td>
+            <td>64.8</td>
+            <td>13.1</td>
+            <td>53.3</td>
+            <td>78.6</td>
+            <td>45.5</td>
+          </tr>
+
+          <tr>
+            <td>15</td>
+            <td>InternVL2-26B</td>
+            <td>SCIS 2024</td>
+            <td>Yes</td>
+            <td>20B</td>
+            <td class="highlight-average">41.8</td>
+            <td>56.0</td>
+            <td>21.2</td>
+            <td>0</td>
+            <td>80.5</td>
+            <td>23.9</td>
+            <td>40.3</td>
+            <td>72.1</td>
+            <td>40.7</td>
+          </tr>
+
+          <tr>
+            <td>16</td>
+            <td>MiniCPM-o-2.6</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">41.6</td>
+            <td>54.1</td>
+            <td>24.7</td>
+            <td>0.3</td>
+            <td>74.4</td>
+            <td>17.6</td>
+            <td>39.2</td>
+            <td>75.7</td>
+            <td>47.0</td>
+          </tr>
+
+          <tr>
+            <td>17</td>
+            <td>Deepseek-VL2-Small</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>16B</td>
+            <td class="highlight-average">41.0</td>
+            <td>56.6</td>
+            <td>23.7</td>
+            <td>0</td>
+            <td>86.4</td>
+            <td>18.9</td>
+            <td>30.6</td>
+            <td>72.2</td>
+            <td>39.5</td>
+          </tr>
+
+          <tr>
+            <td>18</td>
+            <td>InternVL2.5-8B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">40.5</td>
+            <td>48.9</td>
+            <td>21.2</td>
+            <td>0</td>
+            <td>82.1</td>
+            <td>20.3</td>
+            <td>41.2</td>
+            <td>67.8</td>
+            <td>42.3</td>
+          </tr>
+
+          <tr>
+            <td>19</td>
+            <td>Pixtral-12B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>12B</td>
+            <td class="highlight-average">38.4</td>
+            <td>45.1</td>
+            <td>21.8</td>
+            <td>0</td>
+            <td>71.6</td>
+            <td>21.7</td>
+            <td>30.4</td>
+            <td>77.3</td>
+            <td>39.5</td>
+          </tr>
+
+          <tr>
+            <td>20</td>
+            <td>Phi-4-MultiModal</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>5.6B</td>
+            <td class="highlight-average">38.1</td>
+            <td>58.4</td>
+            <td>19.0</td>
+            <td>0</td>
+            <td>53.5</td>
+            <td>38.7</td>
+            <td>28.7</td>
+            <td>66.8</td>
+            <td>39.8</td>
+          </tr>
+
+          <tr>
+            <td>21</td>
+            <td>Ovis1.6-3B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>3B</td>
+            <td class="highlight-average">38.0</td>
+            <td>48.5</td>
+            <td>19.5</td>
+            <td>0</td>
+            <td>69.2</td>
+            <td>20.7</td>
+            <td>22.1</td>
+            <td>74.6</td>
+            <td>49.5</td>
+          </tr>
+
+          <tr>
+            <td>22</td>
+            <td>GLM-4v-9B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>9B</td>
+            <td class="highlight-average">37.1</td>
+            <td>52.7</td>
+            <td>20.6</td>
+            <td>0</td>
+            <td>79.4</td>
+            <td>15.9</td>
+            <td>21.5</td>
+            <td>74.7</td>
+            <td>32.0</td>
+          </tr>
+
+          <tr>
+            <td>23</td>
+            <td>InternVL2-8B</td>
+            <td>SCIS 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">36.1</td>
+            <td>43.0</td>
+            <td>21.6</td>
+            <td>0</td>
+            <td>70.2</td>
+            <td>19.2</td>
+            <td>35.6</td>
+            <td>65.9</td>
+            <td>33.6</td>
+          </tr>
+
+          <tr>
+            <td>24</td>
+            <td>Molmo-7B</td>
+            <td>CVPR 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">33.9</td>
+            <td>40.8</td>
+            <td>19.5</td>
+            <td>0</td>
+            <td>51.7</td>
+            <td>10.0</td>
+            <td>33.9</td>
+            <td>67.0</td>
+            <td>48.0</td>
+          </tr>
+
+          <tr>
+            <td>25</td>
+            <td>XComposer2-4KHD</td>
+            <td>NIPS 2025</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">33.9</td>
+            <td>39.5</td>
+            <td>12.0</td>
+            <td>0</td>
+            <td>69.7</td>
+            <td>26.0</td>
+            <td>20.2</td>
+            <td>68.2</td>
+            <td>35.8</td>
+          </tr>
+          
+          <tr>
+            <td>26</td>
+            <td>LLaVA-OV-7B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">33.7</td>
+            <td>45.4</td>
+            <td>18.5</td>
+            <td>0</td>
+            <td>60.0</td>
+            <td>15.5</td>
+            <td>32.0</td>
+            <td>59.0</td>
+            <td>39.3</td>
+          </tr>
+
+          <tr>
+            <td>27</td>
+            <td>MiniCPM-V-2.6</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">33.0</td>
+            <td>52.2</td>
+            <td>18.6</td>
+            <td>0.3</td>
+            <td>45.8</td>
+            <td>19.6</td>
+            <td>20.9</td>
+            <td>68.9</td>
+            <td>37.3</td>
+          </tr>
+
+          <tr>
+            <td>28</td>
+            <td>Cambrian-1-8B</td>
+            <td>NIPS 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">32.3</td>
+            <td>44.0</td>
+            <td>19.0</td>
+            <td>0</td>
+            <td>52.3</td>
+            <td>19.0</td>
+            <td>20.7</td>
+            <td>64.0</td>
+            <td>39.3</td>
+          </tr>
+
+          <tr>
+            <td>29</td>
+            <td>Kimi-VL-A3B-16B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>16B</td>
+            <td class="highlight-average">32.1</td>
+            <td>49.1</td>
+            <td>13.5</td>
+            <td>0</td>
+            <td>28.8</td>
+            <td>21.9</td>
+            <td>37.6</td>
+            <td>69.4</td>
+            <td>36.2</td>
+          </tr>
+          
+          <tr>
+            <td>30</td>
+            <td>LLaVA-Next-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">28.5</td>
+            <td>41.4</td>
+            <td>17.0</td>
+            <td>0</td>
+            <td>49.0</td>
+            <td>12.9</td>
+            <td>16.1</td>
+            <td>60.9</td>
+            <td>30.5</td>
+          </tr>
+
+          <tr>
+            <td>31</td>
+            <td>Idefics3-8B</td>
+            <td>NeurIPS 2024 Workshop</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">26.0</td>
+            <td>37.4</td>
+            <td>13.0</td>
+            <td>0</td>
+            <td>28.9</td>
+            <td>19.4</td>
+            <td>21.1</td>
+            <td>65.4</td>
+            <td>21.8</td>
+          </tr>
+
+          <tr>
+            <td>32</td>
+            <td>Eagle-X5-7B</td>
+            <td>ICLR 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">25.7</td>
+            <td>34.6</td>
+            <td>18.5</td>
+            <td>0</td>
+            <td>9.7</td>
+            <td>18.5</td>
+            <td>24.0</td>
+            <td>63.1</td>
+            <td>37.0</td>
+          </tr>
+
+          <tr>
+            <td>33</td>
+            <td>Qwen-VL-chat</td>
+            <td>Arxiv 2023</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">25.7</td>
+            <td>34.1</td>
+            <td>12.6</td>
+            <td>0.1</td>
+            <td>42.6</td>
+            <td>19.5</td>
+            <td>18.4</td>
+            <td>58.3</td>
+            <td>20.3</td>
+          </tr>
+
+          <tr>
+            <td>34</td>
+            <td>Qwen-VL</td>
+            <td>Arxiv 2023</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">24.8</td>
+            <td>35.9</td>
+            <td>4.2</td>
+            <td>0</td>
+            <td>38.7</td>
+            <td>28.5</td>
+            <td>13.8</td>
+            <td>60.1</td>
+            <td>16.9</td>
+          </tr>
+
+          <tr>
+            <td>35</td>
+            <td>Deepseek-VL-7B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">24.5</td>
+            <td>33.5</td>
+            <td>13.7</td>
+            <td>0</td>
+            <td>19.1</td>
+            <td>11.7</td>
+            <td>24.8</td>
+            <td>60.5</td>
+            <td>32.5</td>
+          </tr>
+
+          <tr>
+            <td>36</td>
+            <td>Monkey</td>
+            <td>CVPR 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">24.2</td>
+            <td>31.5</td>
+            <td>0.1</td>
+            <td>0</td>
+            <td>34.4</td>
+            <td>26.3</td>
+            <td>17.7</td>
+            <td>61.4</td>
+            <td>22.4</td>
+          </tr>
+
+          <tr>
+            <td>37</td>
+            <td>DocOwl2</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">23.4</td>
+            <td>25.4</td>
+            <td>7.5</td>
+            <td>0</td>
+            <td>47.1</td>
+            <td>26.2</td>
+            <td>8.3</td>
+            <td>52.8</td>
+            <td>19.5</td>
+          </tr>
+          
+          <tr>
+            <td>38</td>
+            <td>TextMonkey</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">23.4</td>
+            <td>39.8</td>
+            <td>1.6</td>
+            <td>0</td>
+            <td>27.6</td>
+            <td>24.8</td>
+            <td>10.2</td>
+            <td>62.3</td>
+            <td>21.2</td>
+          </tr>
+
+          <tr>
+            <td>39</td>
+            <td>VILA1.5-8B</td>
+            <td>CVPR 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">23.2</td>
+            <td>36.0</td>
+            <td>14.5</td>
+            <td>0</td>
+            <td>26.0</td>
+            <td>17.4</td>
+            <td>20.3</td>
+            <td>44.7</td>
+            <td>27.0</td>
+          </tr>
+
+          <tr>
+            <td>40</td>
+            <td>EMU2-chat</td>
+            <td>CVPR 2024</td>
+            <td>Yes</td>
+            <td>37B</td>
+            <td class="highlight-average">20.2</td>
+            <td>34.3</td>
+            <td>0</td>
+            <td>0</td>
+            <td>20.4</td>
+            <td>21.3</td>
+            <td>20.3</td>
+            <td>47.1</td>
+            <td>18.3</td>
+          </tr>
+
+          <tr>
+            <td>41</td>
+            <td>CogVLM-chat</td>
+            <td>NIPS 2024</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">19.9</td>
+            <td>40.8</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1.6</td>
+            <td>18.6</td>
+            <td>10.9</td>
+            <td>60.2</td>
+            <td>26.8</td>
+          </tr>
+
+          <tr>
+            <td>42</td>
+            <td>Yi-VL-6B</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>6B</td>
+            <td class="highlight-average">19.7</td>
+            <td>31.1</td>
+            <td>4.0</td>
+            <td>0</td>
+            <td>23.4</td>
+            <td>22.5</td>
+            <td>18.1</td>
+            <td>43.0</td>
+            <td>15.5</td>
+          </tr>
+
+          <tr>
+            <td>43</td>
+            <td>mPLUG-Owl3</td>
+            <td>Arxiv 2024</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">16.5</td>
+            <td>34.9</td>
+            <td>17.0</td>
+            <td>0</td>
+            <td>12.0</td>
+            <td>14.9</td>
+            <td>24.1</td>
+            <td>50.7</td>
+            <td>25.5</td>
+          </tr>
+
+          <tr>
+            <td>44</td>
+            <td>Janus-1.3B</td>
+            <td>CVPR 2025</td>
+            <td>Yes</td>
+            <td>1.3B</td>
+            <td class="highlight-average">14.3</td>
+            <td>32.6</td>
+            <td>0</td>
+            <td>0</td>
+            <td>12.0</td>
+            <td>14.9</td>
+            <td>24.1</td>
+            <td>50.7</td>
+            <td>25.5</td>
+          </tr>
+          
+          <tr>
+            <td>45</td>
+            <td>UReader</td>
+            <td>EMNLP finding 2023</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">14.1</td>
+            <td>20.9</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>20.7</td>
+            <td>11.3</td>
+            <td>39.0</td>
+            <td>20.8</td>
+          </tr>
+
+          <tr>
+            <td>46</td>
+            <td>LLaVAR</td>
+            <td>Arxiv 2023</td>
+            <td>Yes</td>
+            <td>13B</td>
+            <td class="highlight-average">12.4</td>
+            <td>13.8</td>
+            <td>0</td>
+            <td>0</td>
+            <td>8.3</td>
+            <td>15.2</td>
+            <td>4.4</td>
+            <td>42.4</td>
+            <td>15.0</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <h2>Performance of LMMs on Chinese tasks</h2>
       <table>
         <thead>
           <tr>
@@ -1838,6 +3368,8 @@
       </div>
       
     </div>
+
+    </div>
   </div>
 </section>
 
@@ -1967,5 +3499,30 @@
   </div>
 </footer>
 
+<script>
+  function showLeaderboard(period) {
+    // 1. 隐藏所有的榜单容器
+    const containers = document.querySelectorAll('.leaderboard-container');
+    containers.forEach(container => {
+      container.style.display = 'none';
+    });
+
+    // 2. 显示被点击按钮对应的榜单容器
+    const activeContainer = document.getElementById('leaderboard-' + period);
+    if (activeContainer) {
+      activeContainer.style.display = 'block';
+    }
+
+    // 3. 更新按钮的激活状态
+    const buttons = document.querySelectorAll('.period-selector button');
+    buttons.forEach(button => {
+      button.classList.remove('active');
+    });
+    const activeButton = document.getElementById('btn-' + period);
+    if (activeButton) {
+      activeButton.classList.add('active');
+    }
+  }
+</script>
 </body>
 </html>
