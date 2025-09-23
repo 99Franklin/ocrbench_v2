@@ -1961,7 +1961,7 @@
         <p>We have observed that some methods adopt absolute encoding for prompt inputs when tackling specialized tasks. For example, Qwen2.5VL uses a format like {"bbox_2d": [x1, y1, x2, y2], "text_content": "xxx"} for text spotting. After modifying the prompt accordingly, Qwen2.5VL-7B achieved a text spotting score of 51.6 on public data, showing a significant improvement compared to the default prompt currently used in OCRBench v2. We encourage you to share the evaluation results using prompts adapted to your model's input format. This will help us further improve and refine the leaderboard.</p>
       </div>
 
-   <div id="leaderboard-2025-06" class="leaderboard-container" ;">
+   <div id="leaderboard-2025-06" class="leaderboard-container" style="display: none;">
       <!-- 将英文和中文两个表格完整复制到这里 -->
       <h4 class="table-caption">Performance of LMMs on English tasks</h4>
       <table>
@@ -3600,17 +3600,34 @@
 
 <script>
 function switchPeriod(period) {
+    // 获取所有按钮和表格容器
+    const btn202509 = document.getElementById('btn-2025-09');
+    const btn202506 = document.getElementById('btn-2025-06');
+    const leaderboard202509 = document.getElementById('leaderboard-2025-09');
+    const leaderboard202506 = document.getElementById('leaderboard-2025-06');
+
+    // 移除所有按钮的 'active' 状态
+    btn202509.classList.remove('active');
+    btn202506.classList.remove('active');
+
     // 隐藏所有表格
-    document.getElementById('leaderboard-2025-09').style.display = 'none';
-    document.getElementById('leaderboard-2025-06').style.display = 'none';
+    leaderboard202509.style.display = 'none';
+    leaderboard202506.style.display = 'none';
     
-    // 显示选中的表格
+    // 根据点击的时期，显示对应的表格并激活对应的按钮
     if (period === '2025.09') {
-        document.getElementById('leaderboard-2025-09').style.display = 'block';
+        leaderboard202509.style.display = 'block';
+        btn202509.classList.add('active');
     } else if (period === '2025.06') {
-        document.getElementById('leaderboard-2025-06').style.display = 'block';
+        leaderboard202506.style.display = 'block';
+        btn202506.classList.add('active');
     }
 }
+
+// 确保页面加载时，默认显示 2025.09 的内容
+document.addEventListener('DOMContentLoaded', function() {
+    switchPeriod('2025.09');
+});
 </script>
 </body>
 </html>
