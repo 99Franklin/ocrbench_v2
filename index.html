@@ -70,6 +70,14 @@
     .table-caption {
       text-align: center; /* 这行代码让具有这个类的元素内容居中 */
     }
+    .mix-note {
+      max-width: 1100px;
+      margin: 0.4rem auto 1.2rem auto;
+      color: #4b5563;
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -355,11 +363,640 @@
     <!-- 添加时期选择器 -->
     <div class="period-selector">
       <span>Select Period:</span>
-      <button id="btn-2025-09" onclick="switchPeriod('2025.09')" class="active">2025.09</button>
+      <button id="btn-2026-02" onclick="switchPeriod('2026.02')" class="active">2026.02</button>
+      <button id="btn-2025-09" onclick="switchPeriod('2025.09')">2025.09</button>
       <button id="btn-2025-06" onclick="switchPeriod('2025.06')">2025.06</button>
     </div>
 
-    
+    <div id="leaderboard-2026-02" class="leaderboard-container">
+      <p class="mix-note">For the 2026.02 Top-20, we combine newly evaluated models from this round with the best-performing models carried over from the 2025.09 leaderboard.</p>
+
+      <h4 class="table-caption">Performance of LMMs on English tasks</h4>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Venue</td>
+            <td>Open-source</td>
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Referring</td>
+            <td>Spotting</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Calculation</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Gemini 3 Pro Preview🥇</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">63.4</td>
+            <td>68.5</td>
+            <td>65.9</td>
+            <td>80.8</td>
+            <td>93.9</td>
+            <td>27.1</td>
+            <td>49.7</td>
+            <td>77.8</td>
+            <td>43.5</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Seed1.6-vision🥈</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">62.2</td>
+            <td>70.1</td>
+            <td>59.8</td>
+            <td>38.0</td>
+            <td>89.0</td>
+            <td>22.3</td>
+            <td>84</td>
+            <td>76.4</td>
+            <td>58.0</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>TeleMM-2.0🥉</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">61.8</td>
+            <td>76.4</td>
+            <td>68.1</td>
+            <td>30.0</td>
+            <td>92.8</td>
+            <td>40.9</td>
+            <td>58.1</td>
+            <td>80.0</td>
+            <td>48.0</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Qwen3-Omni-30B-A3B-Instruct</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>30B</td>
+            <td class="highlight-average">61.3</td>
+            <td>72.3</td>
+            <td>62.0</td>
+            <td>45.6</td>
+            <td>93.5</td>
+            <td>20.8</td>
+            <td>67.0</td>
+            <td>74.1</td>
+            <td>55.3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Nemotron Nano V2 VL</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>12B</td>
+            <td class="highlight-average">61.2</td>
+            <td>67.6</td>
+            <td>54.5</td>
+            <td>36.2</td>
+            <td>92.0</td>
+            <td>26.6</td>
+            <td>80.4</td>
+            <td>75.5</td>
+            <td>57.0</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Gemini-2.5-Pro</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">59.3</td>
+            <td>70.9</td>
+            <td>45.8</td>
+            <td>13.4</td>
+            <td>93.7</td>
+            <td>26.9</td>
+            <td>84.6</td>
+            <td>75.8</td>
+            <td>63.0</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>GLM-4.6V-Flash</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">59.0</td>
+            <td>75.3</td>
+            <td>52.5</td>
+            <td>11.3</td>
+            <td>88.5</td>
+            <td>15.2</td>
+            <td>90.4</td>
+            <td>79.8</td>
+            <td>59.0</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Llama-3.1-Nemotron-Nano-VL-8B-V1</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">56.4</td>
+            <td>62.9</td>
+            <td>61.3</td>
+            <td>68.6</td>
+            <td>88.2</td>
+            <td>10.0</td>
+            <td>44.1</td>
+            <td>75.3</td>
+            <td>41.0</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>GPT5-2025-08-07</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">55.5</td>
+            <td>69.3</td>
+            <td>28.2</td>
+            <td>6.5</td>
+            <td>90.1</td>
+            <td>24.8</td>
+            <td>83.7</td>
+            <td>76.4</td>
+            <td>65.4</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Ovis2.5-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">54.1</td>
+            <td>63.6</td>
+            <td>31.2</td>
+            <td>1.7</td>
+            <td>89.8</td>
+            <td>24.8</td>
+            <td>85.4</td>
+            <td>75.3</td>
+            <td>61.0</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Gemini1.5-Pro</td>
+            <td>Arxiv 2024</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">51.6</td>
+            <td>59.1</td>
+            <td>41.2</td>
+            <td>6.6</td>
+            <td>89.5</td>
+            <td>22.4</td>
+            <td>54.7</td>
+            <td>78.8</td>
+            <td>60.3</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>GPT-5.2</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">50.5</td>
+            <td>57.5</td>
+            <td>29.3</td>
+            <td>2.2</td>
+            <td>90.3</td>
+            <td>25.2</td>
+            <td>63.2</td>
+            <td>75.4</td>
+            <td>60.6</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>SAIL-VL2-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">49.3</td>
+            <td>67.4</td>
+            <td>30.4</td>
+            <td>2.8</td>
+            <td>91.0</td>
+            <td>23.7</td>
+            <td>51.6</td>
+            <td>75.6</td>
+            <td>52.0</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Claude Opus 4.6</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">48.4</td>
+            <td>57.5</td>
+            <td>23.5</td>
+            <td>7.4</td>
+            <td>92.0</td>
+            <td>25.3</td>
+            <td>50.6</td>
+            <td>75.2</td>
+            <td>56.0</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>MiniCPM-V-4.5-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">48.4</td>
+            <td>60.3</td>
+            <td>25.7</td>
+            <td>2.2</td>
+            <td>91.1</td>
+            <td>23.4</td>
+            <td>54.1</td>
+            <td>78.6</td>
+            <td>52.0</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>GPT-4o</td>
+            <td>Arxiv 2024</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">47.6</td>
+            <td>58.6</td>
+            <td>23.4</td>
+            <td>0.0</td>
+            <td>87.4</td>
+            <td>23.1</td>
+            <td>51.6</td>
+            <td>74.4</td>
+            <td>62.3</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>MiniCPM-o-4.5</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">44.9</td>
+            <td>62.3</td>
+            <td>22.0</td>
+            <td>0.0</td>
+            <td>71.4</td>
+            <td>29.4</td>
+            <td>42.0</td>
+            <td>78.2</td>
+            <td>54.0</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>Molmo2-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">44.7</td>
+            <td>50.3</td>
+            <td>21.9</td>
+            <td>0.0</td>
+            <td>85.8</td>
+            <td>23.6</td>
+            <td>49.0</td>
+            <td>71.9</td>
+            <td>55.0</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>Ministral-3-14B</td>
+            <td>-</td>
+            <td>No</td>
+            <td>14B</td>
+            <td class="highlight-average">43.3</td>
+            <td>53.5</td>
+            <td>24.6</td>
+            <td>0.3</td>
+            <td>70.0</td>
+            <td>21.1</td>
+            <td>44.7</td>
+            <td>78.1</td>
+            <td>54.5</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>Youtu-VL-4B-Instruct</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>4B</td>
+            <td class="highlight-average">42.3</td>
+            <td>54.1</td>
+            <td>22.7</td>
+            <td>0.0</td>
+            <td>79.3</td>
+            <td>24.8</td>
+            <td>36.9</td>
+            <td>75.6</td>
+            <td>44.5</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="table-caption">Performance of LMMs on Chinese tasks</h4>
+      <table>
+        <thead>
+          <tr>
+            <td>Rank</td>
+            <td>Method</td>
+            <td>Venue</td>
+            <td>Open-source</td>
+            <td>LLM Size</td>
+            <td class="highlight-average">Average</td>
+            <td>Recognition</td>
+            <td>Extraction</td>
+            <td>Parsing</td>
+            <td>Understanding</td>
+            <td>Reasoning</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>TeleMM-2.0🥇</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">66.2</td>
+            <td>69.9</td>
+            <td>81.1</td>
+            <td>37.6</td>
+            <td>96.0</td>
+            <td>46.7</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Gemini 3 Pro Preview🥈</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">63.8</td>
+            <td>69.9</td>
+            <td>79.7</td>
+            <td>34.5</td>
+            <td>94.0</td>
+            <td>40.6</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Gemini-2.5-Pro🥉</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">62.2</td>
+            <td>72.0</td>
+            <td>74.0</td>
+            <td>35.2</td>
+            <td>90.0</td>
+            <td>39.7</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>MiniCPM-o-4.5</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>-</td>
+            <td class="highlight-average">61.5</td>
+            <td>65.0</td>
+            <td>66.1</td>
+            <td>48.8</td>
+            <td>94.0</td>
+            <td>33.4</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Seed1.6-vision</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">60.5</td>
+            <td>68.1</td>
+            <td>74.1</td>
+            <td>34.0</td>
+            <td>80.0</td>
+            <td>46.6</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Qwen3-Omni-30B-A3B-Instruct</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>30B</td>
+            <td class="highlight-average">60.0</td>
+            <td>71.0</td>
+            <td>80.3</td>
+            <td>9.7</td>
+            <td>92.0</td>
+            <td>47.0</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Claude Opus 4.6</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">59.8</td>
+            <td>64.0</td>
+            <td>74.0</td>
+            <td>31.7</td>
+            <td>90.0</td>
+            <td>39.4</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>GLM-4.6V-Flash</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">59.5</td>
+            <td>61.1</td>
+            <td>80.0</td>
+            <td>28.7</td>
+            <td>90.0</td>
+            <td>37.8</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>MiniCPM-V-4.5-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">58.8</td>
+            <td>70.1</td>
+            <td>70.1</td>
+            <td>32.5</td>
+            <td>92.0</td>
+            <td>29.4</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>SAIL-VL2-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">57.6</td>
+            <td>63.4</td>
+            <td>66.4</td>
+            <td>38.9</td>
+            <td>88.0</td>
+            <td>31.1</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>Ovis2-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">56.0</td>
+            <td>61.0</td>
+            <td>67.7</td>
+            <td>43.6</td>
+            <td>82.0</td>
+            <td>25.6</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>WeThink-Qwen2.5VL-7B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>7B</td>
+            <td class="highlight-average">55.8</td>
+            <td>31.9</td>
+            <td>79.6</td>
+            <td>55.5</td>
+            <td>80.0</td>
+            <td>31.8</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Gemini1.5-Pro</td>
+            <td>Arxiv 2024</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">55.5</td>
+            <td>71.4</td>
+            <td>63.8</td>
+            <td>30.5</td>
+            <td>82.0</td>
+            <td>29.9</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Ovis2.5-8B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">55.4</td>
+            <td>55.7</td>
+            <td>66.4</td>
+            <td>32.3</td>
+            <td>86.0</td>
+            <td>36.6</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Kimi-VL-A3B-16B</td>
+            <td>Arxiv 2025</td>
+            <td>Yes</td>
+            <td>16B</td>
+            <td class="highlight-average">54.1</td>
+            <td>54.0</td>
+            <td>71.1</td>
+            <td>32.5</td>
+            <td>84.0</td>
+            <td>28.7</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>Youtu-VL-4B-Instruct</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>4B</td>
+            <td class="highlight-average">54.1</td>
+            <td>62.4</td>
+            <td>67.8</td>
+            <td>28.4</td>
+            <td>82.0</td>
+            <td>29.9</td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>Step-1V</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">53.4</td>
+            <td>65.2</td>
+            <td>64.9</td>
+            <td>33.1</td>
+            <td>78.0</td>
+            <td>25.5</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>GPT-5.2</td>
+            <td>-</td>
+            <td>No</td>
+            <td>-</td>
+            <td class="highlight-average">52.6</td>
+            <td>60.0</td>
+            <td>59.9</td>
+            <td>33.2</td>
+            <td>80.0</td>
+            <td>29.9</td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>Ministral-3-14B</td>
+            <td>-</td>
+            <td>No</td>
+            <td>14B</td>
+            <td class="highlight-average">44.0</td>
+            <td>52.0</td>
+            <td>47.4</td>
+            <td>27.7</td>
+            <td>70.0</td>
+            <td>23.0</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>Molmo2-8B</td>
+            <td>-</td>
+            <td>Yes</td>
+            <td>8B</td>
+            <td class="highlight-average">21.1</td>
+            <td>3.9</td>
+            <td>37.1</td>
+            <td>9.6</td>
+            <td>40.0</td>
+            <td>15.1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
    <div id="leaderboard-2025-09" class="leaderboard-container">
       <!-- 将英文和中文两个表格完整复制到这里 -->
       <h4 class="table-caption">Performance of LMMs on English tasks</h4>
@@ -3875,21 +4512,28 @@
 <script>
 function switchPeriod(period) {
     // 获取所有按钮和表格容器
+    const btn202602 = document.getElementById('btn-2026-02');
     const btn202509 = document.getElementById('btn-2025-09');
     const btn202506 = document.getElementById('btn-2025-06');
+    const leaderboard202602 = document.getElementById('leaderboard-2026-02');
     const leaderboard202509 = document.getElementById('leaderboard-2025-09');
     const leaderboard202506 = document.getElementById('leaderboard-2025-06');
 
     // 移除所有按钮的 'active' 状态
+    btn202602.classList.remove('active');
     btn202509.classList.remove('active');
     btn202506.classList.remove('active');
 
     // 隐藏所有表格
+    leaderboard202602.style.display = 'none';
     leaderboard202509.style.display = 'none';
     leaderboard202506.style.display = 'none';
     
     // 根据点击的时期，显示对应的表格并激活对应的按钮
-    if (period === '2025.09') {
+    if (period === '2026.02') {
+        leaderboard202602.style.display = 'block';
+        btn202602.classList.add('active');
+    } else if (period === '2025.09') {
         leaderboard202509.style.display = 'block';
         btn202509.classList.add('active');
     } else if (period === '2025.06') {
@@ -3898,9 +4542,9 @@ function switchPeriod(period) {
     }
 }
 
-// 确保页面加载时，默认显示 2025.09 的内容
+// 确保页面加载时，默认显示 2026.02 的内容
 document.addEventListener('DOMContentLoaded', function() {
-    switchPeriod('2025.09');
+    switchPeriod('2026.02');
 });
 </script>
 </body>
