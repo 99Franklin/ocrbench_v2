@@ -239,8 +239,8 @@
       border-collapse: collapse;
     }
     
-    table td:nth-child(6),
-    table th:nth-child(6) {
+    table td.highlight-average,
+    table th.highlight-average {
       position: relative;
       z-index: 2; 
       font-weight: 700;
@@ -248,14 +248,14 @@
       border-bottom: none!important;    /* 取消分隔线，避免被截断 */
     }
     
-    /* 行斑马纹对第 4 列失效 */
-    table tr:nth-child(even) td:nth-child(6){
+    /* 行斑马纹对 Average 列失效 */
+    table tbody tr:nth-child(even) td.highlight-average{
       background: rgba(240,248,255,.60);
     }
     
     /* 第一/最后一行圆角 */
-    table tr:first-child  td:nth-child(6){border-top-left-radius:12px;border-top-right-radius:12px}
-    table tr:last-child   td:nth-child(6){border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+    table tbody tr:first-child  td.highlight-average{border-top-left-radius:12px;border-top-right-radius:12px}
+    table tbody tr:last-child   td.highlight-average{border-bottom-left-radius:12px;border-bottom-right-radius:12px}
     
     /* ---------- 连贯虚化伪元素 ---------- */
     table::after{
@@ -269,6 +269,77 @@
       background:rgba(240,248,255,.25);
       box-shadow:0 0 25px 16px rgba(100,150,255,.45);
       z-index:0;
+    }
+
+    td.modality-col-header,
+    td[data-col="modality"] {
+      white-space: nowrap;
+    }
+
+    .opensource-col-header {
+      min-width: 132px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .opensource-header-label {
+      margin-bottom: 6px;
+      color: #274c74;
+      font-size: 12px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .opensource-filter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      border: 1px solid #a8c4e3;
+      border-radius: 999px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f9fcff 0%, #eef5ff 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+    }
+
+    .opensource-filter-btn {
+      border: 0;
+      border-radius: 0;
+      background-color: transparent;
+      color: #32567c;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 600;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      min-width: 44px;
+    }
+
+    .opensource-filter-btn + .opensource-filter-btn {
+      border-left: 1px solid #c1d5eb;
+    }
+
+    .opensource-filter-btn:hover:not(.active) {
+      background-color: rgba(125, 165, 212, 0.18);
+      color: #244567;
+    }
+
+    .opensource-filter-btn.active {
+      background-color: #2d7fe7;
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .opensource-col-header {
+        min-width: 116px;
+      }
+
+      .opensource-filter-btn {
+        padding: 3px 8px;
+        min-width: 38px;
+      }
     }
 
 
@@ -315,41 +386,140 @@
     
     
   </style>
-
+  
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    /* 对页面里每张表执行一次定位计算 */
+  function updateAverageColumnMask() {
     document.querySelectorAll('table').forEach(table => {
-      /* 取表头 or 第一行里的第 4 个单元格 */
-      const avgCell = table.querySelector('tr:first-child th:nth-child(6), tr:first-child td:nth-child(6)');
-      if (!avgCell) return;                       /* 没找到就跳过 */
-  
-      /* 表格 & 单元格相对视窗的矩形 */
-      const tableRect = table.getBoundingClientRect();
-      const cellRect  = avgCell.getBoundingClientRect();
-  
-      /* 计算 Average 列左侧到表格左侧的距离，以及列宽度 */
-      const left  = cellRect.left  - tableRect.left;
-      const width = cellRect.width;
-  
-      /* 写入 CSS 自定义属性，供 table::after 使用 */
-      table.style.setProperty('--avg-left',  `${left}px`);
-      table.style.setProperty('--avg-width', `${width}px`);
-    });
-  });
-  
-  /* 如果页面以后有窗口大小变化，附带自适应（可选） */
-  window.addEventListener('resize', () => {
-    document.querySelectorAll('table').forEach(table => {
-      const avgCell = table.querySelector('tr:first-child th:nth-child(6), tr:first-child td:nth-child(6)');
+      const avgCell = table.querySelector('tr:first-child .highlight-average');
       if (!avgCell) return;
       const tableRect = table.getBoundingClientRect();
       const cellRect  = avgCell.getBoundingClientRect();
-      const left  = cellRect.left - tableRect.left;
+      const left  = cellRect.left  - tableRect.left;
       const width = cellRect.width;
       table.style.setProperty('--avg-left',  `${left}px`);
       table.style.setProperty('--avg-width', `${width}px`);
     });
+  }
+
+  function normalizeModelName(modelName) {
+    return modelName
+      .toLowerCase()
+      .replace(/[🥇🥈🥉]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function isOmniModalModel(modelName) {
+    const normalizedName = normalizeModelName(modelName);
+    return [
+      /gemini[-\s]*3[-\s]*pro[-\s]*preview/,
+      /qwen3[-\s]*omni[-\s]*30b[-\s]*a3b[-\s]*instruct/,
+      /gemini[-\s]*2\.5[-\s]*pro/,
+      /gemini[-\s]*1\.5[-\s]*pro/,
+      /gpt[-\s]*4o/,
+      /minicpm[-\s]*o[-\s]*4\.5/
+    ].some(pattern => pattern.test(normalizedName));
+  }
+
+  function setup202602Leaderboard() {
+    const tables202602 = document.querySelectorAll('#leaderboard-2026-02 table');
+    tables202602.forEach(table => {
+      const headerRow = table.querySelector('thead tr');
+      if (!headerRow || headerRow.children.length < 4) return;
+
+      const openSourceHeaderCell = headerRow.children[3];
+      openSourceHeaderCell.classList.add('opensource-col-header');
+      if (!openSourceHeaderCell.querySelector('.opensource-filter')) {
+        openSourceHeaderCell.innerHTML = '';
+
+        const sourceLabel = document.createElement('div');
+        sourceLabel.className = 'opensource-header-label';
+        sourceLabel.textContent = 'Open-source';
+        openSourceHeaderCell.appendChild(sourceLabel);
+
+        const filterGroup = document.createElement('div');
+        filterGroup.className = 'opensource-filter';
+        filterGroup.setAttribute('role', 'group');
+        filterGroup.setAttribute('aria-label', 'Filter by open-source status');
+
+        [
+          { label: 'All', filter: 'all' },
+          { label: 'Open', filter: 'open' },
+          { label: 'Closed', filter: 'closed' }
+        ].forEach(item => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'opensource-filter-btn';
+          button.dataset.filter = item.filter;
+          button.textContent = item.label;
+          filterGroup.appendChild(button);
+        });
+
+        openSourceHeaderCell.appendChild(filterGroup);
+      }
+
+      if (!headerRow.querySelector('td.modality-col-header')) {
+        const modalityHeaderCell = document.createElement('td');
+        modalityHeaderCell.className = 'modality-col-header';
+        modalityHeaderCell.textContent = 'Modality';
+        openSourceHeaderCell.insertAdjacentElement('afterend', modalityHeaderCell);
+      }
+
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        const methodCell = row.children[1];
+        const openSourceCell = row.querySelector('td[data-col="open-source"]') || row.children[3];
+        if (!methodCell || !openSourceCell) return;
+
+        openSourceCell.dataset.col = 'open-source';
+
+        let modalityCell = openSourceCell.nextElementSibling;
+        if (!modalityCell || modalityCell.dataset.col !== 'modality') {
+          modalityCell = document.createElement('td');
+          modalityCell.dataset.col = 'modality';
+          openSourceCell.insertAdjacentElement('afterend', modalityCell);
+        }
+        modalityCell.textContent = isOmniModalModel(methodCell.textContent) ? 'Omni-modal' : 'VLM';
+      });
+
+      const filterButtons = openSourceHeaderCell.querySelectorAll('.opensource-filter-btn');
+      const applyFilter = filterValue => {
+        rows.forEach(row => {
+          const sourceCell = row.querySelector('td[data-col="open-source"]');
+          if (!sourceCell) return;
+
+          const sourceValue = sourceCell.textContent.trim().toLowerCase();
+          const isOpenSource = sourceValue === 'yes';
+          const shouldShow = filterValue === 'all'
+            || (filterValue === 'open' && isOpenSource)
+            || (filterValue === 'closed' && !isOpenSource);
+
+          row.style.display = shouldShow ? '' : 'none';
+        });
+
+        filterButtons.forEach(button => {
+          button.classList.toggle('active', button.dataset.filter === filterValue);
+        });
+        updateAverageColumnMask();
+      };
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          applyFilter(button.dataset.filter);
+        });
+      });
+
+      applyFilter('all');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setup202602Leaderboard();
+    updateAverageColumnMask();
+  });
+
+  window.addEventListener('resize', () => {
+    updateAverageColumnMask();
   });
   </script>
   
@@ -4539,6 +4709,10 @@ function switchPeriod(period) {
     } else if (period === '2025.06') {
         leaderboard202506.style.display = 'block';
         btn202506.classList.add('active');
+    }
+
+    if (typeof updateAverageColumnMask === 'function') {
+        updateAverageColumnMask();
     }
 }
 
