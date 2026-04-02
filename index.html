@@ -533,13 +533,13 @@
     <!-- 添加时期选择器 -->
     <div class="period-selector">
       <span>Select Period:</span>
-      <button id="btn-2026-02" onclick="switchPeriod('2026.02')" class="active">2026.02</button>
+      <button id="btn-2026-03" onclick="switchPeriod('2026.03')" class="active">2026.03</button>
       <button id="btn-2025-09" onclick="switchPeriod('2025.09')">2025.09</button>
       <button id="btn-2025-06" onclick="switchPeriod('2025.06')">2025.06</button>
     </div>
 
-    <div id="leaderboard-2026-02" class="leaderboard-container">
-      <p class="mix-note">For the 2026.02 Top-20, we combine newly evaluated models from this round with the best-performing models carried over from the 2025.09 leaderboard.</p>
+    <div id="leaderboard-26-03" class="leaderboard-container">
+      <p class="mix-note">For the 2026.03 Top-20, we combine newly evaluated models from this round with the best-performing models carried over from the 2025.09 leaderboard.</p>
 
       <h4 class="table-caption">Performance of LMMs on English tasks</h4>
       <table>
@@ -613,7 +613,7 @@
           <tr>
             <td>4</td>
             <td>Qwen3-Omni-30B-A3B-Instruct</td>
-            <td>Arxiv 2025</td>
+            <td>Arxiv 25</td>
             <td>Yes</td>
             <td>30B</td>
             <td class="highlight-average">61.3</td>
@@ -708,7 +708,7 @@
           </tr>
           <tr>
             <td>10</td>
-            <td>GPT5-2025-08-07</td>
+            <td>GPT5-25-08-07</td>
             <td>-</td>
             <td>No</td>
             <td>-</td>
@@ -4700,7 +4700,7 @@ function switchPeriod(period) {
     leaderboard202506.style.display = 'none';
     
     // 根据点击的时期，显示对应的表格并激活对应的按钮
-    if (period === '2026.02') {
+    if (period === '2026.03') {
         leaderboard202602.style.display = 'block';
         btn202602.classList.add('active');
     } else if (period === '2025.09') {
@@ -4716,9 +4716,9 @@ function switchPeriod(period) {
     }
 }
 
-// 确保页面加载时，默认显示 2026.02 的内容
+// 确保页面加载时，默认显示 2026.03 的内容
 document.addEventListener('DOMContentLoaded', function() {
-    switchPeriod('2026.02');
+    switchPeriod('2026.03');
 });
 </script>
 </body>
