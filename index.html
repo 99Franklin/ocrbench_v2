@@ -421,9 +421,9 @@
     ].some(pattern => pattern.test(normalizedName));
   }
 
-  function setup202602Leaderboard() {
-    const tables202602 = document.querySelectorAll('#leaderboard-2026-02 table');
-    tables202602.forEach(table => {
+  function setup202603Leaderboard() {
+    const tables202603 = document.querySelectorAll('#leaderboard-2026-03 table');
+    tables202603.forEach(table => {
       const headerRow = table.querySelector('thead tr');
       if (!headerRow || headerRow.children.length < 4) return;
 
@@ -514,7 +514,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    setup202602Leaderboard();
+    setup202603Leaderboard();
     updateAverageColumnMask();
   });
 
@@ -533,13 +533,13 @@
     <!-- 添加时期选择器 -->
     <div class="period-selector">
       <span>Select Period:</span>
-      <button id="btn-2026-02" onclick="switchPeriod('2026.02')" class="active">2026.02</button>
+      <button id="btn-2026-03" onclick="switchPeriod('2026.03')" class="active">2026.03</button>
       <button id="btn-2025-09" onclick="switchPeriod('2025.09')">2025.09</button>
       <button id="btn-2025-06" onclick="switchPeriod('2025.06')">2025.06</button>
     </div>
 
-    <div id="leaderboard-2026-02" class="leaderboard-container">
-      <p class="mix-note">For the 2026.02 Top-20, we combine newly evaluated models from this round with the best-performing models carried over from the 2025.09 leaderboard.</p>
+    <div id="leaderboard-2026-03" class="leaderboard-container">
+      <p class="mix-note">For the 2026.03 Top-20, we combine newly evaluated models from this round with the best-performing models carried over from the 2025.09 leaderboard.</p>
 
       <h4 class="table-caption">Performance of LMMs on English tasks</h4>
       <table>
@@ -4682,27 +4682,27 @@
 <script>
 function switchPeriod(period) {
     // 获取所有按钮和表格容器
-    const btn202602 = document.getElementById('btn-2026-02');
+    const btn202603 = document.getElementById('btn-2026-03');
     const btn202509 = document.getElementById('btn-2025-09');
     const btn202506 = document.getElementById('btn-2025-06');
-    const leaderboard202602 = document.getElementById('leaderboard-2026-02');
+    const leaderboard202603 = document.getElementById('leaderboard-2026-03');
     const leaderboard202509 = document.getElementById('leaderboard-2025-09');
     const leaderboard202506 = document.getElementById('leaderboard-2025-06');
 
     // 移除所有按钮的 'active' 状态
-    btn202602.classList.remove('active');
+    btn202603.classList.remove('active');
     btn202509.classList.remove('active');
     btn202506.classList.remove('active');
 
     // 隐藏所有表格
-    leaderboard202602.style.display = 'none';
+    leaderboard202603.style.display = 'none';
     leaderboard202509.style.display = 'none';
     leaderboard202506.style.display = 'none';
     
     // 根据点击的时期，显示对应的表格并激活对应的按钮
-    if (period === '2026.02') {
-        leaderboard202602.style.display = 'block';
-        btn202602.classList.add('active');
+    if (period === '2026.03') {
+        leaderboard202603.style.display = 'block';
+        btn202603.classList.add('active');
     } else if (period === '2025.09') {
         leaderboard202509.style.display = 'block';
         btn202509.classList.add('active');
@@ -4716,9 +4716,9 @@ function switchPeriod(period) {
     }
 }
 
-// 确保页面加载时，默认显示 2026.02 的内容
+// 确保页面加载时，默认显示 2026.03 的内容
 document.addEventListener('DOMContentLoaded', function() {
-    switchPeriod('2026.02');
+    switchPeriod('2026.03');
 });
 </script>
 </body>
