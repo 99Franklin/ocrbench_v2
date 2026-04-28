@@ -78,6 +78,13 @@
       line-height: 1.5;
       text-align: center;
     }
+
+    .leaderboard-table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
   </style>
 </head>
 <body>
@@ -388,6 +395,27 @@
   </style>
   
   <script>
+  function setupLeaderboardTableWrappers() {
+    document.querySelectorAll('.leaderboard-container table').forEach(table => {
+      if (table.parentElement.classList.contains('leaderboard-table-scroll')) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'leaderboard-table-scroll';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
+  }
+
+  function centerLeaderboardTables(target) {
+    const container = typeof target === 'string' ? document.querySelector(target) : target;
+    if (!container) return;
+
+    container.querySelectorAll('.leaderboard-table-scroll').forEach(wrapper => {
+      const maxScrollLeft = wrapper.scrollWidth - wrapper.clientWidth;
+      wrapper.scrollLeft = maxScrollLeft > 0 ? maxScrollLeft / 2 : 0;
+    });
+  }
+
   function updateAverageColumnMask() {
     document.querySelectorAll('table').forEach(table => {
       const avgCell = table.querySelector('tr:first-child .highlight-average');
@@ -515,12 +543,18 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    setupLeaderboardTableWrappers();
     setup202603Leaderboard();
     updateAverageColumnMask();
   });
 
   window.addEventListener('resize', () => {
     updateAverageColumnMask();
+    document.querySelectorAll('.leaderboard-container').forEach(container => {
+      if (container.style.display !== 'none') {
+        centerLeaderboardTables(container);
+      }
+    });
   });
   </script>
   
@@ -4744,6 +4778,7 @@ function switchPeriod(period) {
     const leaderboard202603 = document.getElementById('leaderboard-2026-03');
     const leaderboard202509 = document.getElementById('leaderboard-2025-09');
     const leaderboard202506 = document.getElementById('leaderboard-2025-06');
+    let activeLeaderboard = null;
 
     // 移除所有按钮的 'active' 状态
     btn202603.classList.remove('active');
@@ -4759,17 +4794,25 @@ function switchPeriod(period) {
     if (period === '2026.03') {
         leaderboard202603.style.display = 'block';
         btn202603.classList.add('active');
+        activeLeaderboard = leaderboard202603;
     } else if (period === '2025.09') {
         leaderboard202509.style.display = 'block';
         btn202509.classList.add('active');
+        activeLeaderboard = leaderboard202509;
     } else if (period === '2025.06') {
         leaderboard202506.style.display = 'block';
         btn202506.classList.add('active');
+        activeLeaderboard = leaderboard202506;
     }
 
-    if (typeof updateAverageColumnMask === 'function') {
-        updateAverageColumnMask();
-    }
+    window.requestAnimationFrame(() => {
+        if (typeof updateAverageColumnMask === 'function') {
+            updateAverageColumnMask();
+        }
+        if (typeof centerLeaderboardTables === 'function' && activeLeaderboard) {
+            centerLeaderboardTables(activeLeaderboard);
+        }
+    });
 }
 
 // 确保页面加载时，默认显示 2026.03 的内容
